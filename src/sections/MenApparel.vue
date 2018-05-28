@@ -5,8 +5,8 @@
       <Sidebar/>
     </div>
     <div class="product-list-wrap">
-      <h1>Furniture</h1>
-      <ProductList category="decor"/>
+      <h1>Men Apparel</h1>
+      <ProductList category="menApparel"/>
     </div>
   </div>
 </transition>

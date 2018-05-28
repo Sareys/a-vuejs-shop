@@ -2,8 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import index from '@/sections/index'
 import cart from '@/sections/cart'
-import furniture from '@/sections/furniture'
-import decor from '@/sections/decor'
+import WomenApparel from '@/sections/WomenApparel'
+import MenApparel from '@/sections/MenApparel'
+import Supplements from '@/sections/Supplements'
+import Equipments from '@/sections/Equipments'
 
 
 Vue.use(Router)
@@ -21,14 +23,24 @@ export default new Router({
       component: cart
     },
     {
-      path: '/furniture',
-      name: 'furniture',
-      component: furniture
+      path: '/menApparel',
+      name: 'menApparel',
+      component: MenApparel
     },
     {
-      path: '/decor',
-      name: 'decor',
-      component: decor
+      path: '/womenApparel',
+      name: 'womenApparel',
+      component: WomenApparel
+    },
+    {
+      path: '/supplements',
+      name: 'supplements',
+      component: Supplements
+    },
+    {
+      path: '/equipments',
+      name: 'equipments',
+      component: Equipments
     }
   ]
 })

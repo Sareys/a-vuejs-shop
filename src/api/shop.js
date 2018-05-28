@@ -9,147 +9,355 @@
 const _products = [
   {
     id: 1,
-    title: 'Faux Strelitzia Leaf Pair',
-    price: 100.00,
-    category: 'decor',
+    title: 'Adidas Jacket',
+    price: 50.00,
+    category: 'menApparel',
+    subcategory: 'upper',
     sale: false,
     img: 'planter1.jpg',
-    inventory: 2
+    inventory: 2,
+    description: 'sdfdsfsfsfsfsfsdfs fsfsfsdfsdfsdfsf sdfsfsdfsdfsdfsdfsdf'
   },
   {
     id: 2,
-    title: 'Rohini Daybed',
-    price: 1119.99,
-    category: 'furniture',
+    title: 'Adidas Sweatpants',
+    price: 29.99,
+    category: 'menApparel',
+    subcategory: 'lower',
     sale: false,
     img: 'daybed1.jpg',
-    inventory: 20
+    inventory: 20,
+    description: 'sdfdsfsfsfsfsfsdfs fsfsfsdfsdfsdfsf sdfsfsdfsdfsdfsdfsdf'
   },
   {
     id: 3,
-    title: 'Marte Basket Table',
-    price: 179.99,
-    category: 'furniture',
+    title: 'Adidas Sneakers',
+    price: 129.99,
+    category: 'menApparel',
+    subcategory: 'shoes',
     sale: true,
     img: 'basket-table.jpg',
-    inventory: 20
+    inventory: 20,
+    description: 'sdfdsfsfsfsfsfsdfs fsfsfsdfsdfsdfsf sdfsfsdfsdfsdfsdfsdf'
   },
   {
     id: 4,
-    title: 'Modular Velvet Sofa',
-    price: 549.00,
-    category: 'furniture',
+    title: 'Nike T-shirt',
+    price: 49.00,
+    category: 'menApparel',
+    subcategory: 'upper',
     sale: true,
     img: 'sofa1.jpg',
-    inventory: 20
+    inventory: 20,
+    description: 'sdfdsfsfsfsfsfsdfs fsfsfsdfsdfsdfsf sdfsfsdfsdfsdfsdfsdf'
   },
   {
     id: 5,
-    title: 'Vinyl Record Storage Set',
+    title: 'Nike Running Shoes',
     price: 29.99,
-    category: 'furniture',
+    category: 'menApparel',
+    subcategory: 'shoes',
     sale: false,
     img: 'rack.jpg',
-    inventory: 5
+    inventory: 5,
+    description: 'sdfdsfsfsfsfsfsdfs fsfsfsdfsdfsdfsf sdfsfsdfsdfsdfsdfsdf'
   },
   {
     id: 6,
-    title: '10" Marble Planter',
+    title: 'Adidas Running Shoes',
     price: 58.99,
-    category: 'decor',
+    category: 'menApparel',
+    subcategory: 'shoes',
     sale: true,
     img: 'planter2.jpg',
-    inventory: 20
+    inventory: 20,
+    description: 'sdfdsfsfsfsfsfsdfs fsfsfsdfsdfsdfsf sdfsfsdfsdfsdfsdfsdf'
   },
   {
     id: 7,
-    title: 'Desert Moonflower Credenza',
+    title: 'Chocolate Whey',
     price: 998.00,
-    category: 'men',
+    category: 'supplements',
+    subcategory: 'whey',
     sale: false,
     img: 'credenza.jpg',
-    inventory: 20
+    inventory: 20,
+    description: 'sdfdsfsfsfsfsfsdfs fsfsfsdfsdfsdfsf sdfsfsdfsdfsdfsdfsdf'
   },
   {
     id: 8,
-    title: 'Leni Leaning Mirror',
+    title: 'Strawberry Whey',
     price: 139.90,
-    category: 'decor',
+    category: 'supplements',
+    subcategory: 'whey',
     sale: false,
     img: 'mirror1.jpg',
-    inventory: 0
+    inventory: 0,
+    description: 'sdfdsfsfsfsfsfsdfs fsfsfsdfsdfsdfsf sdfsfsdfsdfsdfsdfsdf'
   },
   {
     id: 9,
-    title: 'Claudio Dining Set',
+    title: 'Protein Chocolate Bar',
     price: 899.00,
-    category: 'furniture',
+    category: 'supplements',
+    subcategory: 'protein bar',
     sale: true,
     img: 'dining.jpg',
-    inventory: 20
+    inventory: 20,
+    description: 'sdfdsfsfsfsfsfsdfs fsfsfsdfsdfsdfsf sdfsfsdfsdfsdfsdfsdf'
   },
   {
     id: 10,
-    title: 'Symbology Banner',
-    price: 129.99,
-    category: 'decor',
+    title: 'Yoga Carpet',
+    price: 4.99,
+    category: 'equipment',
+    subcategory: '',
     sale: false,
     img: 'bunting.jpg',
-    inventory: 20
+    inventory: 20,
+    description: 'sdfdsfsfsfsfsfsdfs fsfsfsdfsdfsdfsf sdfsfsdfsdfsdfsdfsdf'
   },
   {
     id: 11,
-    title: 'Reema Sofa Set',
+    title: 'Creatine: Nature Taste',
     price: 80.99,
-    category: 'furniture',
+    category: 'supplements',
+    subcategory: 'creatine',
     sale: false,
     img: 'sofa2.jpg',
-    inventory: 20
+    inventory: 20,
+    description: 'sdfdsfsfsfsfsfsdfs fsfsfsdfsdfsdfsf sdfsfsdfsdfsdfsdfsdf'
   },
   {
     id: 12,
-    title: 'Blush Velvet Daybed',
+    title: 'Jumping Rope',
     price: 1179.89,
-    category: 'furniture',
+    category: 'equipment',
+    subcategory: '',
     sale: true,
     img: 'daybed2.jpg',
-    inventory: 20
+    inventory: 20,
+    description: 'sdfdsfsfsfsfsfsdfs fsfsfsdfsdfsdfsf sdfsfsdfsdfsdfsdfsdf'
   },
   {
     id: 13,
-    title: 'Polka Dot Wicker Basket',
+    title: 'Weighted Ball',
     price: 69.00,
-    category: 'decor',
+    category: 'equipment',
+    subcategory: '',
     sale: false,
     img: 'wicker.jpg',
-    inventory: 20
+    inventory: 20,
+    description: 'sdfdsfsfsfsfsfsdfs fsfsfsdfsdfsdfsf sdfsfsdfsdfsdfsdfsdf'
   },
   {
     id: 14,
-    title: 'Stripe Rag Rug',
+    title: 'Rubber Bands',
     price: 29.99,
-    category: 'decor',
+    category: 'equipment',
+    subcategory: '',
     sale: true,
     img: 'rag.jpg',
-    inventory: 20
+    inventory: 20,
+    description: 'sdfdsfsfsfsfsfsdfs fsfsfsdfsdfsdfsf sdfsfsdfsdfsdfsdfsdf'
   },
   {
     id: 15,
-    title: 'Rosalie Velvet Bed',
+    title: 'Ab Roller',
     price: 1820.90,
-    category: 'furniture',
+    category: 'equipment',
+    subcategory: '',
     sale: false,
     img: 'bed.jpg',
-    inventory: 20
+    inventory: 20,
+    description: 'sdfdsfsfsfsfsfsdfs fsfsfsdfsdfsdfsf sdfsfsdfsdfsdfsdfsdf'
   },
   {
     id: 16,
-    title: 'Wire Loop Vanity',
+    title: 'Foam Roller',
     price: 159.00,
-    category: 'furniture',
+    category: 'equipment',
+    subcategory: '',
     sale: true,
     img: 'vanity.jpg',
-    inventory: 20
+    inventory: 20,
+    description: 'sdfdsfsfsfsfsfsdfs fsfsfsdfsdfsdfsf sdfsfsdfsdfsdfsdfsdf'
+  },
+  {
+    id: 17,
+    title: 'Adidas Jacket',
+    price: 100.00,
+    category: 'womenApparel',
+    subcategory: 'upper',
+    sale: false,
+    img: 'planter1.jpg',
+    inventory: 2,
+    description: 'sdfdsfsfsfsfsfsdfs fsfsfsdfsdfsdfsf sdfsfsdfsdfsdfsdfsdf'
+  },
+  {
+    id: 18,
+    title: 'Nike Running Shoes',
+    price: 179.99,
+    category: 'womenApparel',
+    subcategory: 'shoes',
+    sale: true,
+    img: 'basket-table.jpg',
+    inventory: 20,
+    description: 'sdfdsfsfsfsfsfsdfs fsfsfsdfsdfsdfsf sdfsfsdfsdfsdfsdfsdf'
+  },
+  {
+    id: 19,
+    title: 'Adidas Running Shoes',
+    price: 549.00,
+    category: 'womenApparel',
+    subcategory: 'shoes',
+    sale: true,
+    img: 'sofa1.jpg',
+    inventory: 20,
+    description: 'sdfdsfsfsfsfsfsdfs fsfsfsdfsdfsdfsf sdfsfsdfsdfsdfsdfsdf'
+  },
+  {
+    id: 20,
+    title: 'Adidas Sweatpants',
+    price: 29.99,
+    category: 'womenApparel',
+    subcategory: 'lower',
+    sale: false,
+    img: 'rack.jpg',
+    inventory: 5,
+    description: 'sdfdsfsfsfsfsfsdfs fsfsfsdfsdfsdfsf sdfsfsdfsdfsdfsdfsdf'
+  },
+  {
+    id: 21,
+    title: 'Nike Sport Bra',
+    price: 58.99,
+    category: 'womenApparel',
+    subcategory: 'upper',
+    sale: true,
+    img: 'planter2.jpg',
+    inventory: 20,
+    description: 'sdfdsfsfsfsfsfsdfs fsfsfsdfsdfsdfsf sdfsfsdfsdfsdfsdfsdf'
+  },
+  {
+    id: 22,
+    title: 'Adidas Sport Bra',
+    price: 998.00,
+    category: 'womenApparel',
+    subcategory: 'upper',
+    sale: false,
+    img: 'credenza.jpg',
+    inventory: 20,
+    description: 'sdfdsfsfsfsfsfsdfs fsfsfsdfsdfsdfsf sdfsfsdfsdfsdfsdfsdf'
+  },
+  {
+    id: 23,
+    title: 'Nike Legging',
+    price: 139.90,
+    category: 'womenApparel',
+    subcategory: 'lower',
+    sale: false,
+    img: 'mirror1.jpg',
+    inventory: 0,
+    description: 'sdfdsfsfsfsfsfsdfs fsfsfsdfsdfsdfsf sdfsfsdfsdfsdfsdfsdf'
+  },
+  {
+    id: 24,
+    title: 'Adidas Short',
+    price: 899.00,
+    category: 'menApparel',
+    subcategory: 'lower',
+    sale: true,
+    img: 'dining.jpg',
+    inventory: 20,
+    description: 'sdfdsfsfsfsfsfsdfs fsfsfsdfsdfsdfsf sdfsfsdfsdfsdfsdfsdf'
+  },
+  {
+    id: 25,
+    title: 'BCAA My Protein',
+    price: 129.99,
+    category: 'supplements',
+    subcategory: 'bcaa',
+    sale: false,
+    img: 'bunting.jpg',
+    inventory: 20,
+    description: 'sdfdsfsfsfsfsfsdfs fsfsfsdfsdfsdfsf sdfsfsdfsdfsdfsdfsdf'
+  },
+  {
+    id: 26,
+    title: 'Multivitamins pills',
+    price: 80.99,
+    category: 'supplements',
+    subcategory: 'vitamins',
+    sale: false,
+    img: 'sofa2.jpg',
+    inventory: 20,
+    description: 'sdfdsfsfsfsfsfsdfs fsfsfsdfsdfsdfsf sdfsfsdfsdfsdfsdfsdf'
+  },
+  {
+    id: 27,
+    title: 'Protein Bar: SugarFree',
+    price: 1179.89,
+    category: 'supplements',
+    subcategory: 'protein bar',
+    sale: true,
+    img: 'daybed2.jpg',
+    inventory: 20,
+    description: 'sdfdsfsfsfsfsfsdfs fsfsfsdfsdfsdfsf sdfsfsdfsdfsdfsdfsdf'
+  },
+  {
+    id: 28,
+    title: 'BCAA Cola Taste',
+    price: 69.00,
+    category: 'supplements',
+    subcategory: 'bcaa',
+    sale: false,
+    img: 'wicker.jpg',
+    inventory: 20,
+    description: 'sdfdsfsfsfsfsfsdfs fsfsfsdfsdfsdfsf sdfsfsdfsdfsdfsdfsdf'
+  },
+  {
+    id: 29,
+    title: 'Underarmour Legging Black',
+    price: 29.99,
+    category: 'womenApparel',
+    subcategory: 'lower',
+    sale: true,
+    img: 'rag.jpg',
+    inventory: 20,
+    description: 'sdfdsfsfsfsfsfsdfs fsfsfsdfsdfsdfsf sdfsfsdfsdfsdfsdfsdf'
+  },
+  {
+    id: 30,
+    title: 'Underarmour Legging White',
+    price: 1820.90,
+    category: 'womenApparel',
+    subcategory: 'lower',
+    sale: false,
+    img: 'bed.jpg',
+    inventory: 20,
+    description: 'sdfdsfsfsfsfsfsdfs fsfsfsdfsdfsdfsf sdfsfsdfsdfsdfsdfsdf'
+  },
+  {
+    id: 31,
+    title: 'Space theme Legging',
+    price: 159.00,
+    category: 'womenApparel',
+    subcategory: 'lower',
+    sale: true,
+    img: 'vanity.jpg',
+    inventory: 20,
+    description: 'sdfdsfsfsfsfsfsdfs fsfsfsdfsdfsdfsf sdfsfsdfsdfsdfsdfsdf'
+  },
+  {
+    id: 32,
+    title: 'Nike Jacket',
+    price: 1119.99,
+    category: 'womenApparel',
+    subcategory: 'upper',
+    sale: false,
+    img: 'daybed1.jpg',
+    inventory: 20,
+    description: 'sdfdsfsfsfsfsfsdfs fsfsfsdfsdfsdfsf sdfsfsdfsdfsdfsdfsdf'
   }
 ]
 
