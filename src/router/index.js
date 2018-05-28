@@ -7,6 +7,7 @@ import MenApparel from '@/sections/MenApparel'
 import Supplements from '@/sections/Supplements'
 import Equipments from '@/sections/Equipments'
 import Production from '@/sections/Production'
+import Login from '@/components/Login'
 
 
 Vue.use(Router)
@@ -47,6 +48,11 @@ export default new Router({
       path: '/production',
       name: 'production',
       component: Production
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
     }
   ]
 })
