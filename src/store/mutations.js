@@ -5,19 +5,20 @@ export default { // setting and updating the state
     state.products = products
   },
 
-  pushProductToCart(state,productId) {
+  pushProductToCart(state, prodData) {
+    console.log(prodData)
     state.cart.push({
-      id: productId,
-      quantity: 1
+      id: prodData.id,
+      quantity: prodData.prodNum
     })
     state.cartItems++
   },
-  incrementItemQty(state,cartItem) {
-    cartItem.quantity++
-    state.cartItems++
+  incrementItemQty(state, cartData) {
+    console.log('cartItem', cartData)
+    cartData.cartItem.quantity+= cartData.prodNum
   },
   decrementProductInventory(state,product) {
-    product.inventory--
+    product.inventory-= product.prodNum
   },
   setCheckoutStatus(state,status) {
     state.checkoutStatus = status

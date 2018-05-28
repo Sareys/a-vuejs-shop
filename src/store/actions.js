@@ -12,13 +12,16 @@ export default { // actions = mehtods
 
   addProductToCart(context, product) {
     // if(product.inventory > 0)
+    if (!product.prodNum) {
+      product.prodNum = 1
+    }
     if(context.getters.productInStock(product)){
       const cartItem  = context.state.cart.find(item => item.id === product.id)
       if(!cartItem) {
-        context.commit('pushProductToCart',product.id)
+        context.commit('pushProductToCart',{id: product.id, prodNum: product.prodNum})
       }
       else {
-        context.commit('incrementItemQty',cartItem)
+        context.commit('incrementItemQty',{cartItem: cartItem, prodNum: product.prodNum})
       }
 
       context.commit('decrementProductInventory',product)

@@ -5,7 +5,7 @@
         <li v-for="product in products" :key="product.id" class="product-card" :class="[ !productInStock(product) ? 'out-of-stock' : '' ]" tabindex="0" v-show="category === product.category || category === 'all'">
           <span class="sale-banner" v-if="product.sale">Sale</span>
           <span class="out-of-stock-banner" v-show="!productInStock(product)">Out of Stock</span>
-          <img :src="`./static/images/${product.img}`" :alt="`image of ${product.title}`">
+          <img class="product-img" :src="`./static/images/${product.img}`" :alt="`image of ${product.title}`" @click="showProduction(product)">
           <span class="product-title">{{product.title}}</span>
           <span class="product-price"> {{product.price | currency}}</span>
           <button @click="addProductToCart(product)" class="add-to-cart-btn">Add to cart</button>
@@ -72,6 +72,9 @@ export default {
       addProductToCart: 'addProductToCart'
 
     }),
+    showProduction: function (product) {
+      this.$router.push({name: 'production', params: {product: product}})
+    }
 
     // addProductToCart(product) {
     //   this.$store.dispatch('addProductToCart',product)
@@ -111,6 +114,10 @@ export default {
    .add-to-cart-btn {
      opacity: 1;
    }
+ }
+
+ .product-img {
+  cursor: pointer;
  }
 
  .product-card:hover, .product-card:focus  {

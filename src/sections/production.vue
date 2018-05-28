@@ -1,0 +1,171 @@
+<template>
+	<div class="production">
+		<div class="prod--left">
+			<img :src="`./static/images/${product.img}`" :alt="`image of ${product.title}`">
+		</div>
+		<div class="prod--right">
+			<p class="prod--right_title">{{product.title}}</p>
+			<p class="prod--right_price">
+				<span class="prod--right_pre">Price</span>
+				{{product.price | currency}}
+			</p>
+			<p class="prod--right_desc">
+				<span class="prod--right_pre">Description</span>
+				{{product.description}}
+			</p>
+			<p class="prod--right_num">
+				<span class="prod--right_pre">Number</span>
+				<span class="prod--right_num__input">
+					<a class="input_pre" href="javascript:(void 0);" @click="minusNum"> - </a>
+					<input type="text" name="" v-model="prodNum" @input="getCurrentNum">
+					<a class="input_after" href="javascript:(void 0);" @click="plusNum(product)"> + </a>
+				</span>
+				<span class="inventory">(Inventory is {{product.inventory}})</span>
+			</p>
+			<button class="prod--right_cart" @click="addProductToCart(product)">Add to Cart</button>
+		</div>
+	</div>
+	
+</template>
+
+<script>
+import {mapState, mapGetters, mapActions} from 'vuex'
+export default {
+	name: 'production',
+	data () {
+		return {
+			product: {},
+			prodNum: 1
+		}
+	},
+	created () {
+		this.product = this.$route.params.product
+		this.product.prodNum = 1
+	},
+	methods: {
+		minusNum: function () {
+			if (this.prodNum > 1) {
+				this.prodNum --
+				this.product.prodNum = this.prodNum
+			}
+		},
+		plusNum: function (pro) {
+			if (this.prodNum < pro.inventory) {
+				this.prodNum ++
+				this.product.prodNum = this.prodNum
+			}
+		},
+		getCurrentNum: function (el) {
+			if (+el.target.value > this.product.inventory){
+				this.prodNum = this.product.inventory
+				this.product.prodNum = this.prodNum
+				el.target.value = this.prodNum
+			} else if (el.target.value < 1) {
+				this.prodNum = 1
+				this.product.prodNum = this.prodNum
+			}
+		},
+		...mapActions({
+      addProductToCart: 'addProductToCart'
+    })
+	}
+
+}
+	
+</script>
+
+<style scoped lang="css">
+.production {
+	display: flex;
+}
+
+.prod--left {
+	flex: .4 0 0;
+}
+
+.prod--left > img {
+	max-height: 500px;
+}
+
+.prod--right {
+	flex: .6 0 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+.prod--right_title {
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 21px;
+	color: #3c3c3c;
+}
+
+.prod--right_pre {
+	font-size: 16px;
+	width: 80px;
+	display: inline-block;
+	color: #6c6c6c;
+}	
+
+.prod--right_num {
+	display: flex;
+	align-items: center;
+}
+
+.prod--right_num__input {
+	display: flex;
+}
+
+.prod--right_num__input > a {
+	outline: 0;
+	text-decoration: none;
+	text-align: center;
+	font-size: 20px;
+	color: black;
+	background-color: #ededed;
+}
+
+.prod--right_num__input > .input_pre {
+	flex: .2 0 0;
+	width: 26px;
+	height: 26px;
+	border: 1px solid #ccc;
+	border-right: 0 !important;
+}
+
+.prod--right_num__input > input {
+	flex: .6 0 0;
+	width: 50px;
+	border: 1px solid #ccc;
+	text-align: center;
+	cursor: text;
+	outline: none;
+}
+
+.prod--right_num__input > .input_after {
+	flex: .2 0 0;
+	width: 26px;
+	height: 26px;
+	border: 1px solid #ccc;
+	border-left: 0 !important;
+}
+
+.prod--right_num > .inventory {
+	margin-left: 10px;
+}
+
+@media (max-width: 600px) {
+	.production {
+		flex-direction: column;
+		height: 800px;
+		align-items: center;
+	}
+
+	.prod--right {
+		width: 333px;
+	}
+    
+}
+</style>
