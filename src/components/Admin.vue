@@ -2,15 +2,25 @@
 	<div class="admin">
 		<div class="search-bar">
 			<div class="search-input">
-				<input type="text" name="" placeholder="title/category">
-				<button class="search">Search</button>
+				<input type="text" name="" placeholder="title" @click="search" v-model:value="searchTitle">
+				<button class="search" @click="search">Search</button>
 			</div>
 			<img src="../assets/add.png" alt="add" @click="openAddDialog">
 		</div>
 		<div class="products">
-
+			<transition-group name="card" tag="ul">
+        <li v-for="product in products" :key="product.id" class="product-card"  tabindex="0" @mouseover="showButton">
+          <img class="product-img" :src="`./static/images/${product.img}`" :alt="`image of ${product.title}`">
+          <span class="product-title">{{product.title}}</span>
+          <span class="product-price"> {{product.price | currency}}</span>
+          <div class="button-master">
+          	<button>Modify</button>
+          	<button>Delete</button>
+          </div>
+        </li>
+      </transition-group>
 		</div>
-		<AddProduct v-if="showAddProduct" @close="closeAddDialog"></AddProduct>
+		<AddProduct v-show="showAddProduct" @close="closeAddDialog"></AddProduct>
 		<ModifyProduct v-if="showModifyProduct"></ModifyProduct>
 	</div>
 	
@@ -25,7 +35,8 @@ export default {
 	data () {
 		return {
 			showAddProduct: false,
-			showModifyProduct: false
+			showModifyProduct: false,
+			searchTitle: 'a'
 		}
 	},
 	methods: {
@@ -38,15 +49,33 @@ export default {
 			this.showAddProduct = false
 			document.body.style.overflow = 'initial'
 		},
+		search: function () {
+
+		},
+		showButton: function (el) {
+			console.log(el)
+		},
 		...mapActions({
       fetchProducts: 'fetchProducts',
       addProductToCart: 'addProductToCart'
-
     }),
 
 	},
 	created () {
-
+		this.fetchProducts().then()
+	},
+	computed: {
+		products() {
+      return this.$store.state.products.filter(el => {
+      	let reg = new RegExp(this.searchTitle, 'i')
+      	console.log(reg)
+      	console.log(reg.test(el.title))
+      	return reg.test(el.title)
+      })
+    },
+    ...mapGetters({
+      productInStock: 'productInStock'
+    })
 	},
 	components: {
 		AddProduct,
@@ -106,6 +135,39 @@ export default {
 			cursor: pointer;
 		}
 	}
-}
 
+	.products {
+		width: 100%;
+		margin-top: 10px;
+
+		ul {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			padding: 0;
+
+			li {
+				width: 250px;
+
+				.button-master {
+					position: absolute;
+					background-color: black;
+					opacity: .75;
+					height: 100%;
+					width: 100%;
+
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					align-items: center;
+					display: none;
+				}
+			}
+
+			.product-card:hover {
+
+			}
+		}
+	}
+}
 </style>
