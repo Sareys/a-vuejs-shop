@@ -73,7 +73,7 @@ export default {
 
     }),
     showProduction: function (product) {
-      this.$router.push({name: 'production', params: {product: product}})
+      this.$router.push({name: 'production', query: {pid: product.id}})
     }
 
     // addProductToCart(product) {

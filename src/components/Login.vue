@@ -48,7 +48,7 @@ export default {
     }
   },
   created () {
-    this.hasAccount = this.$route.params.type === 'signIn' ? true : false
+   
   },
   methods: {
     showSignup: function () {
@@ -192,6 +192,10 @@ export default {
   display: flex;
   flex-direction: column;
   width: 30rem;
+  border-radius: 2px;
+  box-shadow: 0 0 2px rgba(0,0,0,.15);
+  padding: 10px;
+  background-color: #f2f2f5;
   input {
     height: 3rem;
     margin-top: 0.5rem;
@@ -200,6 +204,7 @@ export default {
     border: none;
     border-bottom: solid 1px;
     font-size: 1.5rem;
+    background-color: #f2f2f5;
   }
 
   .legal-info {

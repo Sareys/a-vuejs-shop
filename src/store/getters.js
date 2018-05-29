@@ -29,5 +29,9 @@ export default { // = computed properties
     return(product) => {
       return product.inventory > 0
     }
+  },
+
+  getProductById: (state) => (id) => {
+    return state.products.find(product => product.id === id)
   }
 }

@@ -9,10 +9,10 @@
 				<span class="prod--right_pre">Price</span>
 				{{product.price | currency}}
 			</p>
-			<p class="prod--right_desc">
-				<span class="prod--right_pre">Description</span>
-				{{product.description}}
-			</p>
+			<div class="prod--right_desc">
+				<p class="prod--right_pre">Description</p>
+				<p class="description">{{product.description}}</p>
+			</div>
 			<p class="prod--right_num">
 				<span class="prod--right_pre">Number</span>
 				<span class="prod--right_num__input">
@@ -39,8 +39,12 @@ export default {
 		}
 	},
 	created () {
-		this.product = this.$route.params.product
+		this.fetchProducts()
+		const pid = this.$route.query.pid
+		this.product = this.$store.getters.getProductById(pid)
 		this.product.prodNum = 1
+	},
+	beforeMount() {
 	},
 	methods: {
 		minusNum: function () {
@@ -66,7 +70,11 @@ export default {
 			}
 		},
 		...mapActions({
+			fetchProducts: 'fetchProducts',
       addProductToCart: 'addProductToCart'
+    }),
+    ...mapGetters({
+    	getProductById: 'getProductById'
     })
 	}
 
@@ -77,18 +85,26 @@ export default {
 <style scoped lang="css">
 .production {
 	display: flex;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	position: absolute;
+	height: 350px;
+
 }
 
 .prod--left {
-	flex: .4 0 0;
+	flex: .5 0 0;
 }
 
 .prod--left > img {
-	max-height: 500px;
+	max-height: 350px;
 }
 
 .prod--right {
-	flex: .6 0 0;
+	flex: .5 0 0;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -107,7 +123,19 @@ export default {
 	width: 80px;
 	display: inline-block;
 	color: #6c6c6c;
+	text-align: left;
 }	
+
+.prod--right_desc {
+	display: flex;
+}
+
+.prod--right_desc > .description {
+	max-width: 300px;
+	text-align: left;
+  word-wrap: break-word;
+
+}
 
 .prod--right_num {
 	display: flex;
@@ -159,12 +187,16 @@ export default {
 @media (max-width: 600px) {
 	.production {
 		flex-direction: column;
-		height: 800px;
 		align-items: center;
+		height: auto;
 	}
 
 	.prod--right {
-		width: 333px;
+		width: 233px;
+	}
+
+	.description {
+		width: 200px;
 	}
     
 }
