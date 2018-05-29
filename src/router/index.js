@@ -8,6 +8,8 @@ import Supplements from '@/sections/Supplements'
 import Equipments from '@/sections/Equipments'
 import Production from '@/sections/Production'
 import Login from '@/components/Login'
+import Admin from '@/components/Admin'
+
 
 
 Vue.use(Router)
@@ -53,6 +55,11 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/admin',
+      name: 'admin',
+      component: Admin
     }
   ]
 })

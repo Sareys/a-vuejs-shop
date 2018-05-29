@@ -9,6 +9,7 @@
     <router-link to="/womenApparel">Women Apparel</router-link>
     <router-link to="/equipments">Equipments</router-link>
     <router-link to="/supplements">Supplements</router-link>
+    <router-link to="/admin">Admin</router-link>
     <div class="nav-link">
       <router-link to="/login" exact>
         <div class="login-link">
@@ -107,6 +108,7 @@
   .cart-link {
     float: right;
     position: relative;
+    margin-right: 10px;
   }
 
   .login-link {

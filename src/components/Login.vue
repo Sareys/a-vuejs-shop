@@ -1,6 +1,7 @@
 <template>
   <div class="wrap">
     <form class="signin" v-show="hasAccount">
+      <h1 class="sign-title">Login to your account</h1>
       <input id="signinEmail" type="text" name="signin-email" placeholder="email" @input="clearSignFail" @keyup.enter="signUp">
       <input id="signinPass" type="password" name="signin-pass" placeholder="password" @input="clearSignFail" @keyup.enter="signUp">
       <input id="signinReset" type="reset" name="" style="display:none;">
@@ -12,6 +13,7 @@
       </div>
     </form>
     <form class="signup" v-show="!hasAccount">
+      <h1 class="sign-title">Create your account</h1>
       <input id="signupName" type="text" name="signup-name" placeholder="UserName" @input="checkName">
       <span class="legal-info">{{nameIllegalInfo}}</span>
       <input id="signupEmail" type="text" name="sigup-email" placeholder="Email" @input="checkEmail">
@@ -171,9 +173,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.site-name {
-  font-size: 5rem;
-}
+
 .wrap {
   display: flex;
   left: 0;
@@ -195,7 +195,13 @@ export default {
   border-radius: 2px;
   box-shadow: 0 0 2px rgba(0,0,0,.15);
   padding: 10px;
-  background-color: #f2f2f5;
+  background-color: white;
+
+  .sign-title {
+    text-align: center;
+
+  }
+
   input {
     height: 3rem;
     margin-top: 0.5rem;
@@ -204,7 +210,6 @@ export default {
     border: none;
     border-bottom: solid 1px;
     font-size: 1.5rem;
-    background-color: #f2f2f5;
   }
 
   .legal-info {

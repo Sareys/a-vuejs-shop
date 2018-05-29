@@ -7,11 +7,11 @@
 			<p class="prod--right_title">{{product.title}}</p>
 			<p class="prod--right_price">
 				<span class="prod--right_pre">Price</span>
-				{{product.price | currency}}
+				<span class="prod--right_info">{{product.price | currency}}</span>
 			</p>
 			<div class="prod--right_desc">
 				<p class="prod--right_pre">Description</p>
-				<p class="description">{{product.description}}</p>
+				<p class="description prod--right_info ">{{product.description}}</p>
 			</div>
 			<p class="prod--right_num">
 				<span class="prod--right_pre">Number</span>
@@ -20,7 +20,7 @@
 					<input type="text" name="" v-model="prodNum" @input="getCurrentNum">
 					<a class="input_after" href="javascript:(void 0);" @click="plusNum(product)"> + </a>
 				</span>
-				<span class="inventory">(Inventory is {{product.inventory}})</span>
+				<span class="inventory prod--right_info">(Inventory is {{product.inventory}})</span>
 			</p>
 			<button class="prod--right_cart" @click="addProductToCart(product)">Add to Cart</button>
 		</div>
@@ -91,7 +91,7 @@ export default {
 	bottom: 0;
 	margin: auto;
 	position: absolute;
-	height: 350px;
+	height: 400px;
 
 }
 
@@ -100,7 +100,7 @@ export default {
 }
 
 .prod--left > img {
-	max-height: 350px;
+	max-height: 400px;
 }
 
 .prod--right {
@@ -112,19 +112,23 @@ export default {
 }
 
 .prod--right_title {
-	font-size: 20px;
+	font-size: 28px;
 	font-weight: 700;
 	line-height: 21px;
 	color: #3c3c3c;
 }
 
 .prod--right_pre {
-	font-size: 16px;
-	width: 80px;
+	font-size: 20px;
+	width: 110px;
 	display: inline-block;
 	color: #6c6c6c;
 	text-align: left;
 }	
+
+.prod--right_info {
+	font-size: 18px;
+}
 
 .prod--right_desc {
 	display: flex;
