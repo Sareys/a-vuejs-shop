@@ -9,19 +9,19 @@
 		</div>
 		<div class="products">
 			<transition-group name="card" tag="ul">
-        <li v-for="product in products" :key="product.id" class="product-card"  tabindex="0" @mouseover="showButton">
+        <li v-for="product in products" :key="product.id" :data-key="product.id" class="product-card"  tabindex="0" @mouseover="showButton">
           <img class="product-img" :src="`./static/images/${product.img}`" :alt="`image of ${product.title}`">
           <span class="product-title">{{product.title}}</span>
           <span class="product-price"> {{product.price | currency}}</span>
-          <div class="button-master">
-          	<button>Modify</button>
-          	<button>Delete</button>
+					<div class="button-master">
+          	<button @click="openModifyDialog">Modify</button>
+          	<button @click="deleteProduct">Delete</button>
           </div>
         </li>
       </transition-group>
 		</div>
-		<AddProduct v-show="showAddProduct" @close="closeAddDialog"></AddProduct>
-		<ModifyProduct v-if="showModifyProduct"></ModifyProduct>
+		<AddProduct v-if="showAddProduct" @close="closeAddDialog"></AddProduct>
+		<ModifyProduct :modifyPid="modifyPid" v-if="showModifyProduct" @close="closModifyDialog"></ModifyProduct>
 	</div>
 	
 </template>
@@ -36,7 +36,8 @@ export default {
 		return {
 			showAddProduct: false,
 			showModifyProduct: false,
-			searchTitle: 'a'
+			searchTitle: '',
+			modifyPid: null
 		}
 	},
 	methods: {
@@ -49,15 +50,29 @@ export default {
 			this.showAddProduct = false
 			document.body.style.overflow = 'initial'
 		},
+		openModifyDialog: function (el) {
+			this.modifyPid = +(el.target.parentElement.parentElement.dataset.key)
+			this.showModifyProduct = true
+			document.body.style.overflow = 'hidden'
+			document.body.style.height = '100%'
+		},
+		closModifyDialog: function () {
+			this.showModifyProduct = false
+			document.body.style.overflow = 'initial'
+		},
+		deleteProduct: function (el) {
+			const deletePid = +(el.target.parentElement.parentElement.dataset.key)
+			this.$store.commit('removeProductFromState', deletePid)
+		},
 		search: function () {
 
 		},
 		showButton: function (el) {
-			console.log(el)
 		},
 		...mapActions({
       fetchProducts: 'fetchProducts',
-      addProductToCart: 'addProductToCart'
+      addProductToCart: 'addProductToCart',
+      removeProductFromState: 'removeProductFromState'
     }),
 
 	},
@@ -68,13 +83,11 @@ export default {
 		products() {
       return this.$store.state.products.filter(el => {
       	let reg = new RegExp(this.searchTitle, 'i')
-      	console.log(reg)
-      	console.log(reg.test(el.title))
       	return reg.test(el.title)
       })
     },
     ...mapGetters({
-      productInStock: 'productInStock'
+      productInStock: 'productInStock',
     })
 	},
 	components: {
@@ -153,8 +166,8 @@ export default {
 					position: absolute;
 					background-color: black;
 					opacity: .75;
-					height: 100%;
-					width: 100%;
+					height: 95%;
+					width: 93%;
 
 					display: flex;
 					flex-direction: column;
@@ -165,6 +178,9 @@ export default {
 			}
 
 			.product-card:hover {
+				.button-master {
+					display: flex;
+				}
 
 			}
 		}

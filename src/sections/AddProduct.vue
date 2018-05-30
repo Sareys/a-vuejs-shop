@@ -7,42 +7,43 @@
 				<form class="add-form">
 					<div class="form-item">
 						<span>Title</span>
-						<input class="form-right" type="text" name="">
+						<input class="form-right" type="text" name="" v-model="product.title">
 					</div>
 					<div class="form-item">
 						<span>Price</span>
-						<input class="form-right" type="number" name="">
+						<input class="form-right" type="number" name="" v-model="product.price" step="0.01">
 					</div>
 					<div class="form-item">
 						<span>Category</span>
-						<input class="form-right"type="" name="" :value="category" disabled="">
+						<input class="form-right" type="text" name="" :value="category" disabled="">
+						
 					</div>
 					<div class="form-item">
 						<span>Subcategory</span>
-						<select class="form-right" name="">
+						<select class="form-right" name="" v-model="product.subcategory">
 							<option v-for="sub in subCategory[category]" :value="sub">{{sub}}</option>
 						</select>
 					</div>
 					<div class="form-item">
 						<span>Sale</span>
-						<div class="form-right sale-input">
-							<input class=""type="radio" name="sale" value="true" checked>True
-							<input class=""type="radio" name="sale" value="false">False
+						<div class="form-right sale-input" >
+							<input class="radio"type="radio" name="sale" value="true" v-model="product.sale" :checked="product.sale">True
+							<input class="radio" type="radio" name="sale" value="false" v-model="product.sale" :checked="!product.sale">False
 						</div>
 					</div>
 					<div class="form-item">
 						<span>Inventory</span>
-						<input class="form-right"type="number" name="">
+						<input class="form-right"type="number" name="" v-model="product.inventory">
 					</div>
 					<div class="form-item">
 						<span>Description</span>
-						<textarea class="form-right" style="resize:none;"></textarea>
+						<textarea class="form-right" style="resize:none;" v-model="product.description"></textarea>
 					</div>
 					<div class="form-item">
 						<span>Img</span>
 						<input class="form-right file-input" type="file" name="">
 					</div>
-					<button>Add</button>
+					<button type="button" @click="addProduct">Add</button>
 				</form>
 			<span class="exit-icon" @click="closeDialog">x</span>
 			</div>
@@ -54,6 +55,7 @@
 
 <script>
 import ChooseCategory from '@/sections/ChooseCategory'
+import {mapActions} from 'vuex'
 
 
 export default {
@@ -66,6 +68,16 @@ export default {
 				womenApparel: ['shoes', 'upper', 'lower'],
 				supplements: ['whey', 'protein bar'],
 				equirement: []
+			},
+			product: {
+				title: '',
+		    price: 0,
+		    category: '',
+		    subcategory: '',
+		    sale: false,
+		    img: 'bunting.jpg', // hack the img file
+		    inventory: 0,
+		    description: ''
 			}
 		}
 	},
@@ -76,11 +88,19 @@ export default {
 		},
 		getCategory: function (c) {
 			this.category = c
+			this.product.category = c
 			this.hasCategory = true
-			console.log('category', this.category)
-		}
+		},
+		addProduct: function (el) {
+			el.target.disabled = true
+			this.$store.commit('addProductToState', this.product)
+		},
+		...mapActions({
+			addProductToState: 'addProductToState'
+		})
 	},
 	created () {
+
 	},
 	mounted () {
 	},
@@ -152,6 +172,11 @@ export default {
 
 					.sale-input {
 						border: none !important;
+
+						.radio {
+							margin-right: 5px;
+						}
+
 						input {
 							margin-left: 35px;
 						}

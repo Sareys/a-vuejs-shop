@@ -6,7 +6,6 @@
 			</li>
 		</div>
 	</div>
-	
 </template>
 
 <script>
@@ -22,7 +21,6 @@ export default {
 		}
 	}
 }
-	
 </script>
 
 <style scoped lang="scss">
@@ -47,11 +45,10 @@ export default {
 		border-radius: 5px;
 		margin-top: -33px;
 
-
 		li {
 			width: 300px;
 			font-size: 30px;
-			border-bottom: 1px solid;
+			border-bottom: 1px solid rgba(203, 203, 203, 0.85);
 			list-style-type: none;
 			flex: .25 0 0;
 			display: flex;
@@ -64,8 +61,6 @@ export default {
 			background-color: #5044ff;
 			color: white;
 		}
-
 	}
 }
-	
 </style>

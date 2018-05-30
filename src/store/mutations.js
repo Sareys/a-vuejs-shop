@@ -32,5 +32,22 @@ export default { // setting and updating the state
   },
   toggleSale(state) {
     state.sale = !state.sale
+  },
+
+  addProductToState(state, product) {
+    let newId = Date.now() + Math.round(Math.random(0, 1) * 1000)
+    product.id = product.id ? product.id : newId
+    state.products.push(product)
+  },
+
+  removeProductFromState(state, id) {
+    const index = state.products.findIndex(p => p.id === id)
+    state.products.splice(index, 1)
+  },
+  modifyProductInState(state, product) {
+    const index = state.products.findIndex(p => p.id === product.id)
+    state.products.splice(index, 1, product)
   }
+
+
 }
