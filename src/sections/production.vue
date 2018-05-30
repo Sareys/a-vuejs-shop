@@ -40,6 +40,7 @@ export default {
 	},
 	created () {
 		this.fetchProducts()
+    this.$store.commit('resetFilterInfo')
 		const pid = this.$route.query.pid
 		this.product = this.$store.getters.getProductById(pid)
 		this.product.prodNum = 1

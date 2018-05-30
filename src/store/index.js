@@ -39,7 +39,7 @@ export default new Vuex.Store({
       'all': [
         {sub:'upper', check:false},
         {sub:'lower', check:false},
-        {sub:'shoe', check:false},
+        {sub:'shoes', check:false},
         {sub:'whey', check:false},
         {sub:'protein bar', check:false},
         {sub: 'creatine', check: false}
@@ -47,12 +47,12 @@ export default new Vuex.Store({
       'menApparel': [
         {sub:'upper', check:false},
         {sub:'lower', check:false},
-        {sub:'shoe', check:false}
+        {sub:'shoes', check:false}
       ],
       'womenApparel': [
         {sub:'upper', check:false},
         {sub:'lower', check:false},
-        {sub:'shoe', check:false}
+        {sub:'shoes', check:false}
       ],
       'supplements': [
         {sub:'whey', check:false},

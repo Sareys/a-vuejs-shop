@@ -75,8 +75,10 @@ export default {
     // });
     this.loading = true
     // this.$store.dispatch('fetchProducts')
+    this.$store.commit('resetFilterInfo')
     this.fetchProducts()
       .then(() => this.loading = false)
+
   },
   methods : {
     ...mapActions({

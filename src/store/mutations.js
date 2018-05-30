@@ -65,6 +65,57 @@ export default { // setting and updating the state
   modifyProductInState(state, product) {
     const index = state.products.findIndex(p => p.id === product.id)
     state.products.splice(index, 1, product)
+  },
+  resetFilterInfo(state) {
+    state.sale = false
+    state.stack = false
+    state.categorySelect.length = 0
+    state.subcategory.length = 0
+    state.categoryForCateCheck = [
+      {
+        cate: 'menApparel',
+        check: false
+      },
+      {
+        cate: 'womenApparel',
+        check: false
+      },
+      {
+        cate: 'supplements',
+        check: false
+      },
+      {
+        cate: 'equipment',
+        check: false
+      }
+    ]
+    state.categoryForSubCheck = {         
+      'all': [
+        {sub:'upper', check:false},
+        {sub:'lower', check:false},
+        {sub:'shoes', check:false},
+        {sub:'whey', check:false},
+        {sub:'protein bar', check:false},
+        {sub: 'creatine', check: false}
+      ],
+      'menApparel': [
+        {sub:'upper', check:false},
+        {sub:'lower', check:false},
+        {sub:'shoes', check:false}
+      ],
+      'womenApparel': [
+        {sub:'upper', check:false},
+        {sub:'lower', check:false},
+        {sub:'shoes', check:false}
+      ],
+      'supplements': [
+        {sub:'whey', check:false},
+        {sub:'protein bar', check:false},
+        {sub: 'creatine', check: false}
+      ],
+      'equipment': [
+      ]
+    }
   }
 
 
