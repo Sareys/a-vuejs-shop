@@ -9,6 +9,7 @@ import Equipments from '@/sections/Equipments'
 import Production from '@/sections/Production'
 import Login from '@/components/Login'
 import Admin from '@/components/Admin'
+import Checkout from '@/sections/Checkout'
 
 
 
@@ -60,6 +61,11 @@ export default new Router({
       path: '/admin',
       name: 'admin',
       component: Admin
+    },
+    {
+      path: '/checkout',
+      name: 'checkout',
+      component: Checkout
     }
   ]
 })

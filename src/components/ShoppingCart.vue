@@ -21,7 +21,7 @@
         <!-- <button :disabled="$store.state.cart.length <= 0" @click="$store.dispatch('checkout')">Checkout</button>
         <p class="status" v-if="$store.state.checkoutStatus">{{$store.state.checkoutStatus}}</p> -->
         <!-- <button :disabled="$store.state.cart.length <= 0" @click="$store.dispatch('checkout')">Checkout</button> -->
-        <button @click="checkout">Checkout</button>
+        <button @click="showCheckout">Checkout</button>
         <p class="status" v-if="checkoutStatus">{{checkoutStatus}}</p>
       </div>
     </div>
@@ -44,8 +44,11 @@ export default {
     })
   },
   methods: {
+    showCheckout() {
+      this.$router.push({name: 'checkout'})
+    },
     ...mapActions({
-      checkout: 'checkout'
+      //checkout: 'checkout'
     })
   }
 
