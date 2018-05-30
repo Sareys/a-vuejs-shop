@@ -32,12 +32,20 @@
         <div class="checkbox-box"></div>
       </label>
     </div>
-    <div class="aside-block sub-category">
+    <div class="aside-block sub-category" v-if="entrance==='product'">
       <h4>Sub Category</h4>
       <label v-for="item in subCategoryed"  class="checkbox-control sub-category--label ">
-        <input  type="checkbox" value="false" @change="updateSubCategory(item.sub)" v-model="item.check">
+        <input  type="checkbox" @change="updateSubCategory(item.sub)" v-model="item.check">
         <div class="checkbox-box"></div>
-         <span>{{item.sub}}</span>
+        <span>{{item.sub}}</span>
+      </label>
+    </div>
+    <div class="aside-block sub-category" v-else>
+      <h4>Category</h4>
+      <label v-for="item in categoryed" class="checkbox-control sub-category--label">
+        <input type="checkbox" @change="updateCategory(item.cate)" v-model="item.check">
+        <div class="checkbox-box"></div>
+        <span>{{item.cate}}</span>
       </label>
     </div>
     <!-- <div class="aside-block">
@@ -57,20 +65,17 @@ export default {
       max: 2000,
       check: this.checked,
       stack: this.stacked,
-      subCategory: this.subCategoryed,
-      categoryList: {
-        menApparel: ['shoes', 'upper', 'lower'],
-        womenApparel: ['shoes', 'upper', 'lower'],
-        supplements: ['whey', 'protein bar'],
-        equirement: []
-      }
     };
   },
   props: {
     category: {
       type: String,
       default: 'all'
-    } 
+    },
+    entrance: {
+      type: String,
+      default: 'product'
+    }
   },
   computed: {
     pricerange() {
@@ -83,8 +88,10 @@ export default {
       return this.$store.state.stack;
     },
     subCategoryed() {
-      console.log(this.$store.state.category[this.category])
-      return this.$store.state.category[this.category]
+      return this.$store.state.categoryForSubCheck[this.category]
+    },
+    categoryed() {
+      return this.$store.state.categoryForCateCheck
     }
   },
   methods: {
@@ -99,6 +106,9 @@ export default {
     },
     updateSubCategory(sub) {
       this.$store.commit('toggleSubCategory', sub)
+    },
+    updateCategory(cate) {
+      this.$store.commit('toggleCategory', cate)
     }
   }
 
@@ -133,7 +143,7 @@ export default {
     height: 250px;
   }
   .sub-category--label {
-    width: 100px;
+    width: 120px;
     display: flex;
     justify-content: space-between;
   }

@@ -15,14 +15,34 @@ export default new Vuex.Store({
     highprice: 1500,
     sale: false,        // check sale or not
     stack: false,       // check out of stack or not
+    categorySelect: [],   // check category type
     subcategory: [],    // sub category enter
-    category: {         // category items
+    categoryForCateCheck: [
+      {
+        cate: 'menApparel',
+        check: false
+      },
+      {
+        cate: 'womenApparel',
+        check: false
+      },
+      {
+        cate: 'supplements',
+        check: false
+      },
+      {
+        cate: 'equipment',
+        check: false
+      }
+    ],
+    categoryForSubCheck: {         // category items for subcategory check
       'all': [
         {sub:'upper', check:false},
         {sub:'lower', check:false},
         {sub:'shoe', check:false},
         {sub:'whey', check:false},
-        {sub:'protein bar', check:false}
+        {sub:'protein bar', check:false},
+        {sub: 'creatine', check: false}
       ],
       'menApparel': [
         {sub:'upper', check:false},
@@ -36,7 +56,8 @@ export default new Vuex.Store({
       ],
       'supplements': [
         {sub:'whey', check:false},
-        {sub:'protein bar', check:false}
+        {sub:'protein bar', check:false},
+        {sub: 'creatine', check: false}
       ],
       'equipment': [
       ]

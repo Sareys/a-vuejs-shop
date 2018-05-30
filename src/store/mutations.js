@@ -38,11 +38,18 @@ export default { // setting and updating the state
   },
   toggleSubCategory(state, sub) {
     if (state.subcategory.includes(sub)){
-      console.log(sub)
       state.subcategory.splice(state.subcategory.indexOf(sub),1)
     } else {
       state.subcategory.push(sub)
     }
+  },
+  toggleCategory(state, cate) {
+    if (state.categorySelect.includes(cate)){
+      state.categorySelect.splice(state.categorySelect.indexOf(cate), 1) 
+    } else {
+      state.categorySelect.push(cate)
+    }
+    console.log(state.categorySelect)
   },
 
   addProductToState(state, product) {
