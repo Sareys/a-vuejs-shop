@@ -24,6 +24,22 @@
         <div class="checkbox-box"></div>
       </label>
     </div>
+    <div class="aside-block">
+      <h4>Out of Stack</h4>
+      <label class="checkbox-control">
+        <span class="label-name">Show out of Stack</span>
+        <input type="checkbox" v-model="stack" @change="updateStack" name="">
+        <div class="checkbox-box"></div>
+      </label>
+    </div>
+    <div class="aside-block sub-category">
+      <h4>Sub Category</h4>
+      <label v-for="item in subCategoryed"  class="checkbox-control sub-category--label ">
+        <input  type="checkbox" value="false" @change="updateSubCategory(item.sub)" v-model="item.check">
+        <div class="checkbox-box"></div>
+         <span>{{item.sub}}</span>
+      </label>
+    </div>
     <!-- <div class="aside-block">
       <h4>Support</h4>
       <p>Get in touch with us for any queries at <a href="#">support@bazaaar.in</a></p>
@@ -39,8 +55,22 @@ export default {
     return {
       min: 0,
       max: 2000,
-      check: this.checked
+      check: this.checked,
+      stack: this.stacked,
+      subCategory: this.subCategoryed,
+      categoryList: {
+        menApparel: ['shoes', 'upper', 'lower'],
+        womenApparel: ['shoes', 'upper', 'lower'],
+        supplements: ['whey', 'protein bar'],
+        equirement: []
+      }
     };
+  },
+  props: {
+    category: {
+      type: String,
+      default: 'all'
+    } 
   },
   computed: {
     pricerange() {
@@ -48,6 +78,13 @@ export default {
     },
     checked() {
       return this.$store.state.sale;
+    },
+    stacked() {
+      return this.$store.state.stack;
+    },
+    subCategoryed() {
+      console.log(this.$store.state.category[this.category])
+      return this.$store.state.category[this.category]
     }
   },
   methods: {
@@ -56,6 +93,12 @@ export default {
     },
     updateSale() {
       this.$store.commit('toggleSale');
+    },
+    updateStack() {
+      this.$store.commit('toggleStack')
+    },
+    updateSubCategory(sub) {
+      this.$store.commit('toggleSubCategory', sub)
     }
   }
 
@@ -81,6 +124,18 @@ export default {
   .checkbox-control {
     position: relative;
     display: inline-block;
+  }
+  .sub-category {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 250px;
+  }
+  .sub-category--label {
+    width: 100px;
+    display: flex;
+    justify-content: space-between;
   }
   .checkbox-box {
     width: 18px;

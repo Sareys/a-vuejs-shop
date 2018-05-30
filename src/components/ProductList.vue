@@ -37,11 +37,23 @@ export default {
     //   products: state => state.products
     // }),
     products() {
-      return this.$store.state.products.filter(el =>
+      let saleProducts = this.$store.state.products.filter(el =>
         this.$store.state.sale
           ? el.price < this.$store.state.highprice && el.sale
           : el.price < this.$store.state.highprice
       )
+
+      let stackProducts = this.$store.state.products.filter(el => {
+         return this.$store.state.stack ? el.price < this.$store.state.highprice && (el.inventory === 0) : el.price < this.$store.state.highprice
+      })
+
+      let subCategoryProducts = this.$store.state.products.filter(el => {
+        return this.$store.state.subcategory.length > 0 ? el.price < this.$store.state.highprice && this.$store.state.subcategory.includes(el.subcategory) : el.price < this.$store.state.highprice
+      })
+
+      console.log('subcategory', subCategoryProducts)
+
+      return saleProducts.filter(s => stackProducts.includes(s) && subCategoryProducts.includes(s))
     },
     ...mapGetters({
       productInStock: 'productInStock'

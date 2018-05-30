@@ -33,6 +33,17 @@ export default { // setting and updating the state
   toggleSale(state) {
     state.sale = !state.sale
   },
+  toggleStack(state) {
+    state.stack = !state.stack
+  },
+  toggleSubCategory(state, sub) {
+    if (state.subcategory.includes(sub)){
+      console.log(sub)
+      state.subcategory.splice(state.subcategory.indexOf(sub),1)
+    } else {
+      state.subcategory.push(sub)
+    }
+  },
 
   addProductToState(state, product) {
     let newId = Date.now() + Math.round(Math.random(0, 1) * 1000)
