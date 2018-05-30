@@ -45,7 +45,7 @@
 					</div>
 					<div class="">
 						<button type="button" @click="modify">Modify</button>
-						<button type="button">Cancel</button>
+						<button type="button" @click="closeDialog">Cancel</button>
 					</div>
 				</form>
 		</div>
@@ -76,6 +76,9 @@ export default {
 		modify: function () {
 			console.log(this.product)
 			//this.$store.commit('modifyProductInState', this.product)
+			this.$emit('showTipInfo', 'success')
+			this.closeDialog()
+
 		},
 		...mapGetters({
       getProductById: 'getProductById'
@@ -117,6 +120,8 @@ export default {
 		left: 0;
 		right: 0;
 		margin: auto;
+		display: flex;
+		justify-content: center;
 
 		.add-form {
 			display: flex;
@@ -124,6 +129,7 @@ export default {
 			justify-content: space-between;
 			align-items: center;
 			margin: 10px;
+			flex: 1 0 0;
 
 			.form-item {
 				display: flex;

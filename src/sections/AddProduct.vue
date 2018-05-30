@@ -43,9 +43,11 @@
 						<span>Img</span>
 						<input class="form-right file-input" type="file" name="">
 					</div>
-					<button type="button" @click="addProduct">Add</button>
+					<div>
+						<button type="button" @click="addProduct">Add</button>
+						<button type="button" @click="closeDialog">Cancel</button>
+					</div>
 				</form>
-			<span class="exit-icon" @click="closeDialog">x</span>
 			</div>
 		</div>
 		<div @click="closeDialog" class="mask"></div>
@@ -70,7 +72,7 @@ export default {
 				equirement: []
 			},
 			product: {
-				title: '',
+				title: 'something',
 		    price: 0,
 		    category: '',
 		    subcategory: '',
@@ -94,6 +96,8 @@ export default {
 		addProduct: function (el) {
 			el.target.disabled = true
 			this.$store.commit('addProductToState', this.product)
+			this.$emit('showTipInfo', 'Added')
+			this.closeDialog()
 		},
 		...mapActions({
 			addProductToState: 'addProductToState'

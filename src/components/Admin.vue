@@ -25,8 +25,9 @@
 	      </transition-group>
 			</div>
     </div>
-		<AddProduct v-if="showAddProduct" @close="closeAddDialog"></AddProduct>
-		<ModifyProduct :modifyPid="modifyPid" v-if="showModifyProduct" @close="closModifyDialog"></ModifyProduct>
+		<AddProduct v-if="showAddProduct" @close="closeAddDialog" @showTipInfo="showTipInfo"></AddProduct>
+		<ModifyProduct :modifyPid="modifyPid" v-if="showModifyProduct" @close="closModifyDialog" @showTipInfo="showTipInfo"></ModifyProduct>
+		<TipInformation v-if="showTip" :info="tipInfo"></TipInformation>
 	</div>
 	
 </template>
@@ -35,6 +36,7 @@
 import AddProduct from '@/sections/AddProduct'
 import ModifyProduct from '@/sections/ModifyProduct'
 import Sidebar from '@/components/Sidebar'
+import TipInformation from '@/sections/TipInformation'
 import {mapState, mapGetters, mapActions} from 'vuex'
 
 export default {
@@ -43,7 +45,9 @@ export default {
 			showAddProduct: false,
 			showModifyProduct: false,
 			searchTitle: '',
-			modifyPid: null
+			modifyPid: null,
+			showTip: false,
+			tipInfo: ''
 		}
 	},
 	methods: {
@@ -67,8 +71,15 @@ export default {
 			document.body.style.overflow = 'initial'
 		},
 		deleteProduct: function (el) {
-			const deletePid = +(el.target.parentElement.parentElement.dataset.key)
-			this.$store.commit('removeProductFromState', deletePid)
+			if (window.confirm('are you sure to delete the product?')){
+				const deletePid = +(el.target.parentElement.parentElement.dataset.key)
+				this.$store.commit('removeProductFromState', deletePid)
+			}
+		},
+		showTipInfo: function (tipInfo) {
+			this.showTip = true
+			this.tipInfo = tipInfo
+			setTimeout(()=>{this.showTip = false}, 2000)
 		},
 		search: function () {
 
@@ -114,7 +125,8 @@ export default {
 	components: {
 		AddProduct,
 		ModifyProduct,
-		Sidebar
+		Sidebar,
+		TipInformation
 	}
 }
 	
@@ -152,14 +164,12 @@ export default {
 				border-left: 0;
 				border-width: 2px;
 				height: 36px;
-				background-color: white;
-				color: #5044ff;
-
+				background-color: #5044ff;
+				color: white;
 			}
 
 			.search:hover {
-				background-color: #5044ff;
-				color: white;
+				
 			}
 		}
 

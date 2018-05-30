@@ -53,7 +53,7 @@ export default {
 
       console.log('subcategory', subCategoryProducts)
 
-      return saleProducts.filter(s => stackProducts.includes(s) && subCategoryProducts.includes(s))
+      return saleProducts.filter(s => stackProducts.includes(s) && subCategoryProducts.includes(s)).sort((a,b) => a.title[0].toUpperCase() < b.title[0].toUpperCase() ? -1 : 1 )
     },
     ...mapGetters({
       productInStock: 'productInStock'
