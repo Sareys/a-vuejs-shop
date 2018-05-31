@@ -39,12 +39,18 @@ export default {
 		}
 	},
 	created () {
-		this.fetchProducts()
-    this.$store.commit('resetFilterInfo')
-		const pid = this.$route.query.pid
-		this.product = this.$store.getters.getProductById(pid)
-		this.product.prodNum = 1
-	},
+		this.fetchProducts().then(() => {
+			this.$store.commit('resetFilterInfo')
+			const pid = this.$route.query.pid
+			const product = this.$store.getters.getProductById(pid)
+			if (product) {
+				window.localStorage.setItem('product', JSON.stringify(product))
+				this.product = product
+			} else {
+				this.product = JSON.parse(window.localStorage.getItem('product'))
+			}
+		})
+  },
 	beforeMount() {
 	},
 	methods: {
