@@ -67,7 +67,7 @@ export default {
 		},
 		removeItem: function (cartPro) {
 			const product = this.$store.getters.getProductById(cartPro.id)
-			this.removeProductFromCart(product)
+			this.removeProduct(product)
 		},
 		...mapActions({
 			addProductNum: 'addProductToCart',
