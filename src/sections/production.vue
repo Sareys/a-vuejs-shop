@@ -16,7 +16,7 @@
 			<p class="prod--right_num">
 				<span class="prod--right_pre">Number</span>
 				<span class="prod--right_num__input">
-					<a class="input_pre" href="javascript:(void 0);" @click="minusNum"> - </a>
+					<a class="input_pre" href="javascript:(void 0);" @click="decNum"> - </a>
 					<input type="text" name="" v-model="prodNum" @input="getCurrentNum">
 					<a class="input_after" href="javascript:(void 0);" @click="plusNum(product)"> + </a>
 				</span>
@@ -54,7 +54,7 @@ export default {
 	beforeMount() {
 	},
 	methods: {
-		minusNum: function () {
+		decNum: function () {
 			if (this.prodNum > 1) {
 				this.prodNum --
 				this.product.prodNum = this.prodNum

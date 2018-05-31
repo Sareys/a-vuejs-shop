@@ -6,7 +6,6 @@ export default { // setting and updating the state
   },
 
   pushProductToCart(state, prodData) {
-    console.log(prodData)
     state.cart.push({
       id: prodData.id,
       quantity: prodData.prodNum
@@ -14,12 +13,23 @@ export default { // setting and updating the state
     state.cartItems++
   },
   incrementItemQty(state, cartData) {
-    console.log('cartItem', cartData)
     cartData.cartItem.quantity+= cartData.prodNum
     state.cartItems += cartData.prodNum
   },
   decrementProductInventory(state,product) {
     product.inventory-= product.prodNum
+  },
+  incrementProductInventory(state, data) {
+    data.product.inventory += data.quantity
+  },
+  decrementQuantityInCart(state, item) {
+    item.quantity --
+    state.cartItems --
+  },
+  removeProductFromCart(state, data) {
+    const index = state.cart.findIndex(item => item.id === data.product.id)
+    state.cart.splice(index, 1)
+    state.cartItems -= data.quantity
   },
   setCheckoutStatus(state,status) {
     state.checkoutStatus = status

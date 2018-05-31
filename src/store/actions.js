@@ -15,6 +15,7 @@ export default { // actions = mehtods
     if (!product.prodNum) {
       product.prodNum = 1
     }
+    console.log('add', product)
     if(context.getters.productInStock(product)){
       const cartItem  = context.state.cart.find(item => item.id === product.id)
       if(!cartItem) {
@@ -23,12 +24,25 @@ export default { // actions = mehtods
       else {
         context.commit('incrementItemQty',{cartItem: cartItem, prodNum: product.prodNum})
       }
-
       context.commit('decrementProductInventory',product)
+    }
+  },
+  decProductFromCart(context, product) {
+    let cartItem = context.state.cart.find(item => item.id === product.id)
+    console.log('cartItem', cartItem)
+    if (cartItem.quantity > 1) {
+      context.commit('decrementQuantityInCart', cartItem)
+      context.commit('incrementProductInventory', product)
+    }
+  },
+  removeProduct(context, product) {
+    let cartItem = context.state.cart.find(item => item.id === product.id)
+    if (cartItem) {
+      context.commit('removeProductFromCart', {product: product, quantity: cart.quantity})
+      context.commit('incrementProductInventory', {product: product, quantity: cartItem.quantity})
 
     }
   },
-
   checkout(context) {
     shop.buyProducts(
       context.state.cart,

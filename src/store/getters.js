@@ -8,6 +8,8 @@ export default { // = computed properties
     return state.cart.map(cartItem => {
       const product = state.products.find(product => product.id === cartItem.id)
       return {
+        id: product.id,
+        // inventory: product.inventory, 
         title: product.title,
         price: product.price,
         img: product.img,
