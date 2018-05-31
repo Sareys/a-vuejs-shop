@@ -16,6 +16,7 @@ export default { // setting and updating the state
   incrementItemQty(state, cartData) {
     console.log('cartItem', cartData)
     cartData.cartItem.quantity+= cartData.prodNum
+    state.cartItems += cartData.prodNum
   },
   decrementProductInventory(state,product) {
     product.inventory-= product.prodNum

@@ -1,5 +1,21 @@
 <template>
   <aside>
+    <div class="aside-block sub-category" v-if="entrance==='product'">
+      <h4>Sub Category</h4>
+      <label v-for="item in subCategoryed"  class="checkbox-control sub-category--label ">
+        <input  type="checkbox" @change="updateSubCategory(item.sub)" v-model="item.check">
+        <div class="checkbox-box"></div>
+        <span>{{item.sub}}</span>
+      </label>
+    </div>
+    <div class="aside-block sub-category" v-else>
+      <h4>Category</h4>
+      <label v-for="item in categoryed" class="checkbox-control sub-category--label">
+        <input type="checkbox" @change="updateCategory(item.cate)" v-model="item.check">
+        <div class="checkbox-box"></div>
+        <span>{{item.cate}}</span>
+      </label>
+    </div>
     <div class="aside-block">
       <label for="pricerange">Maximum Price: <span>${{ pricerange }}</span></label>
       <input
@@ -25,29 +41,15 @@
       </label>
     </div>
     <div class="aside-block">
-      <h4>Out of Stack</h4>
+      <h4>In Stack</h4>
       <label class="checkbox-control">
-        <span class="label-name">Show out of Stack</span>
+        <span class="label-name">Show in Stack</span>
         <input type="checkbox" v-model="stack" @change="updateStack" name="">
         <div class="checkbox-box"></div>
       </label>
     </div>
-    <div class="aside-block sub-category" v-if="entrance==='product'">
-      <h4>Sub Category</h4>
-      <label v-for="item in subCategoryed"  class="checkbox-control sub-category--label ">
-        <input  type="checkbox" @change="updateSubCategory(item.sub)" v-model="item.check">
-        <div class="checkbox-box"></div>
-        <span>{{item.sub}}</span>
-      </label>
-    </div>
-    <div class="aside-block sub-category" v-else>
-      <h4>Category</h4>
-      <label v-for="item in categoryed" class="checkbox-control sub-category--label">
-        <input type="checkbox" @change="updateCategory(item.cate)" v-model="item.check">
-        <div class="checkbox-box"></div>
-        <span>{{item.cate}}</span>
-      </label>
-    </div>
+
+
     <!-- <div class="aside-block">
       <h4>Support</h4>
       <p>Get in touch with us for any queries at <a href="#">support@bazaaar.in</a></p>

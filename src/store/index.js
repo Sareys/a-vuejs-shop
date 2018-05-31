@@ -14,7 +14,7 @@ export default new Vuex.Store({
     checkoutStatus: null,
     highprice: 1500,
     sale: false,        // check sale or not
-    stack: false,       // check out of stack or not
+    stack: false,       // check in of stack or not
     categorySelect: [],   // check category type
     subcategory: [],    // sub category enter
     categoryForCateCheck: [
