@@ -48,8 +48,6 @@
         <div class="checkbox-box"></div>
       </label>
     </div>
-
-
     <!-- <div class="aside-block">
       <h4>Support</h4>
       <p>Get in touch with us for any queries at <a href="#">support@bazaaar.in</a></p>
@@ -113,7 +111,6 @@ export default {
       this.$store.commit('toggleCategory', cate)
     }
   }
-
 }
 </script>
 
@@ -129,7 +126,6 @@ export default {
   .max {
     float: right;
   }
-
   .aside-block h4 {
     margin-bottom: 10px;
   }
@@ -178,5 +174,4 @@ export default {
     left: 2px;
     background: #5044ff;
   }
-
 </style>

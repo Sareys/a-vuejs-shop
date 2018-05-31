@@ -35,12 +35,12 @@ export default {
 	data () {
 		return {
 			product: {},
-			prodNum: 1
+			prodNum: 1  // the number to by, defalut 1 
 		}
 	},
 	created () {
 		this.fetchProducts().then(() => {
-			this.$store.commit('resetFilterInfo')
+			// this.$store.commit('resetFilterInfo')  
 			const pid = this.$route.query.pid
 			const product = this.$store.getters.getProductById(pid)
 			if (product) {
@@ -51,18 +51,16 @@ export default {
 			}
 		})
   },
-	beforeMount() {
-	},
 	methods: {
 		decNum: function () {
 			if (this.prodNum > 1) {
-				this.prodNum --
+				this.prodNum--
 				this.product.prodNum = this.prodNum
 			}
 		},
 		plusNum: function (pro) {
 			if (this.prodNum < pro.inventory) {
-				this.prodNum ++
+				this.prodNum++
 				this.product.prodNum = this.prodNum
 			}
 		},
@@ -84,9 +82,7 @@ export default {
     	getProductById: 'getProductById'
     })
 	}
-
 }
-	
 </script>
 
 <style scoped lang="css">
@@ -99,7 +95,6 @@ export default {
 	margin: auto;
 	position: absolute;
 	height: 400px;
-
 }
 
 .prod--left {
@@ -145,7 +140,6 @@ export default {
 	max-width: 300px;
 	text-align: left;
   word-wrap: break-word;
-
 }
 
 .prod--right_num {
@@ -209,6 +203,5 @@ export default {
 	.description {
 		width: 200px;
 	}
-    
 }
 </style>

@@ -13,7 +13,7 @@
 			</div>
 			<div class="products">
 				<transition-group name="card" tag="ul">
-	        <li v-for="product in products" :key="product.id" :data-key="product.id" class="product-card"  tabindex="0" @mouseover="showButton">
+	        <li v-for="product in products" :key="product.id" :data-key="product.id" class="product-card"  tabindex="0">
 	          <img class="product-img" :src="`./static/images/${product.img}`" :alt="`image of ${product.title}`">
 	          <span class="product-title">{{product.title}}</span>
 	          <span class="product-price"> {{product.price | currency}}</span>
@@ -84,33 +84,35 @@ export default {
 		search: function () {
 
 		},
-		showButton: function (el) {
-		},
 		...mapActions({
       fetchProducts: 'fetchProducts',
       addProductToCart: 'addProductToCart',
       removeProductFromState: 'removeProductFromState'
     }),
-
 	},
 	created () {
 		this.fetchProducts().then()
 	},
 	computed: {
 		products() {
+			// get products on sale
 			let saleProducts = this.$store.state.products.filter(el =>
         this.$store.state.sale
           ? el.price < this.$store.state.highprice && el.sale
           : el.price < this.$store.state.highprice
       )
 
+			// get products in stack
       let stackProducts = this.$store.state.products.filter(el => {
          return this.$store.state.stack ? el.price < this.$store.state.highprice && (el.inventory > 0) : el.price < this.$store.state.highprice
       })
 
+      // get Products filter by category
       let categoryProducts = this.$store.state.products.filter(el => {
         return this.$store.state.categorySelect.length > 0 ? el.price < this.$store.state.highprice && this.$store.state.categorySelect.includes(el.category) : el.price < this.$store.state.highprice
       })
+
+      // get products filter by search words
       let searchProducts = this.$store.state.products.filter(el => {
       	let reg = new RegExp(this.searchTitle, 'i')
       	return reg.test(el.title)
@@ -132,10 +134,7 @@ export default {
 	
 </script>
 
-
 <style lang="scss" scoped>
-
-
 .admin {
 	display: flex;
 	flex-direction: column;
@@ -204,6 +203,7 @@ export default {
 					flex-direction: column;
 					justify-content: center;
 					align-items: center;
+
 					display: none;
 				}
 			}
@@ -212,7 +212,6 @@ export default {
 				.button-master {
 					display: flex;
 				}
-
 			}
 		}
 	}

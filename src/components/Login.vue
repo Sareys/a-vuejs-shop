@@ -66,7 +66,6 @@ export default {
       if (this.signinFail === true) {
         this.signinFail = false
       }
-
     },
     checkName: function (e) {
       let nickName = e.target.value
@@ -199,7 +198,6 @@ export default {
 
   .sign-title {
     text-align: center;
-
   }
 
   input {

@@ -47,7 +47,6 @@ import {mapGetters, mapActions} from 'vuex'
 export default {
 	data () {
 		return {
-
 		}
 	},
 	computed: {
@@ -163,7 +162,6 @@ export default {
 			}
 		}
 
-
 		.total {
 			display: flex;
 			justify-content: space-between;
@@ -198,7 +196,6 @@ export default {
 	}
 
 	.button-wrap {
-
 	}
 }
 </style>

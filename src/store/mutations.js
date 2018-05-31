@@ -12,41 +12,52 @@ export default { // setting and updating the state
     })
     state.cartItems++
   },
+
   incrementItemQty(state, cartData) {
     cartData.cartItem.quantity+= cartData.prodNum
     state.cartItems += cartData.prodNum
   },
+
   decrementProductInventory(state,product) {
     product.inventory-= product.prodNum
   },
+
   incrementProductInventory(state, data) {
     data.product.inventory += data.quantity
   },
+
   decrementQuantityInCart(state, item) {
-    item.quantity --
-    state.cartItems --
+    item.quantity--
+    state.cartItems--
   },
+
   removeProductFromCart(state, data) {
     const index = state.cart.findIndex(item => item.id === data.product.id)
     state.cart.splice(index, 1)
     state.cartItems -= data.quantity
   },
+
   setCheckoutStatus(state,status) {
     state.checkoutStatus = status
   },
+
   emptyCart(state) {
     state.cart = []
     state.cartItems = 0
   },
+
   setHighPrice(state, event) {
     state.highprice = event
   },
+
   toggleSale(state) {
     state.sale = !state.sale
   },
+
   toggleStack(state) {
     state.stack = !state.stack
   },
+
   toggleSubCategory(state, sub) {
     if (state.subcategory.includes(sub)){
       state.subcategory.splice(state.subcategory.indexOf(sub),1)
@@ -54,6 +65,7 @@ export default { // setting and updating the state
       state.subcategory.push(sub)
     }
   },
+
   toggleCategory(state, cate) {
     if (state.categorySelect.includes(cate)){
       state.categorySelect.splice(state.categorySelect.indexOf(cate), 1) 
@@ -73,10 +85,12 @@ export default { // setting and updating the state
     const index = state.products.findIndex(p => p.id === id)
     state.products.splice(index, 1)
   },
+
   modifyProductInState(state, product) {
     const index = state.products.findIndex(p => p.id === product.id)
     state.products.splice(index, 1, product)
   },
+  
   resetFilterInfo(state) {
     state.sale = false
     state.stack = false
