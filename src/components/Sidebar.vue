@@ -1,5 +1,21 @@
 <template>
   <aside>
+    <div class="aside-block sub-category" v-if="entrance==='product'">
+      <h4>Sub Category</h4>
+      <label v-for="item in subCategoryed"  class="checkbox-control sub-category--label ">
+        <input  type="checkbox" @change="updateSubCategory(item.sub)" v-model="item.check">
+        <div class="checkbox-box"></div>
+        <span>{{item.sub}}</span>
+      </label>
+    </div>
+    <div class="aside-block sub-category" v-else>
+      <h4>Category</h4>
+      <label v-for="item in categoryed" class="checkbox-control sub-category--label">
+        <input type="checkbox" @change="updateCategory(item.cate)" v-model="item.check">
+        <div class="checkbox-box"></div>
+        <span>{{item.cate}}</span>
+      </label>
+    </div>
     <div class="aside-block">
       <label for="pricerange">Maximum Price: <span>${{ pricerange }}</span></label>
       <input
@@ -24,6 +40,14 @@
         <div class="checkbox-box"></div>
       </label>
     </div>
+    <div class="aside-block">
+      <h4>In Stack</h4>
+      <label class="checkbox-control">
+        <span class="label-name">Show in Stack</span>
+        <input type="checkbox" v-model="stack" @change="updateStack" name="">
+        <div class="checkbox-box"></div>
+      </label>
+    </div>
     <!-- <div class="aside-block">
       <h4>Support</h4>
       <p>Get in touch with us for any queries at <a href="#">support@bazaaar.in</a></p>
@@ -39,8 +63,19 @@ export default {
     return {
       min: 0,
       max: 2000,
-      check: this.checked
+      check: this.checked,
+      stack: this.stacked,
     };
+  },
+  props: {
+    category: {
+      type: String,
+      default: 'all'
+    },
+    entrance: {
+      type: String,
+      default: 'product'
+    }
   },
   computed: {
     pricerange() {
@@ -48,6 +83,15 @@ export default {
     },
     checked() {
       return this.$store.state.sale;
+    },
+    stacked() {
+      return this.$store.state.stack;
+    },
+    subCategoryed() {
+      return this.$store.state.categoryForSubCheck[this.category]
+    },
+    categoryed() {
+      return this.$store.state.categoryForCateCheck
     }
   },
   methods: {
@@ -56,9 +100,17 @@ export default {
     },
     updateSale() {
       this.$store.commit('toggleSale');
+    },
+    updateStack() {
+      this.$store.commit('toggleStack')
+    },
+    updateSubCategory(sub) {
+      this.$store.commit('toggleSubCategory', sub)
+    },
+    updateCategory(cate) {
+      this.$store.commit('toggleCategory', cate)
     }
   }
-
 }
 </script>
 
@@ -74,13 +126,24 @@ export default {
   .max {
     float: right;
   }
-
   .aside-block h4 {
     margin-bottom: 10px;
   }
   .checkbox-control {
     position: relative;
     display: inline-block;
+  }
+  .sub-category {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 250px;
+  }
+  .sub-category--label {
+    width: 120px;
+    display: flex;
+    justify-content: space-between;
   }
   .checkbox-box {
     width: 18px;
@@ -111,5 +174,4 @@ export default {
     left: 2px;
     background: #5044ff;
   }
-
 </style>

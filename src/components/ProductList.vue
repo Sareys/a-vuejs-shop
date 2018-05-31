@@ -5,7 +5,7 @@
         <li v-for="product in products" :key="product.id" class="product-card" :class="[ !productInStock(product) ? 'out-of-stock' : '' ]" tabindex="0" v-show="category === product.category || category === 'all'">
           <span class="sale-banner" v-if="product.sale">Sale</span>
           <span class="out-of-stock-banner" v-show="!productInStock(product)">Out of Stock</span>
-          <img :src="`./static/images/${product.img}`" :alt="`image of ${product.title}`">
+          <img class="product-img" :src="`./static/images/${product.img}`" :alt="`image of ${product.title}`" @click="showProduction(product)">
           <span class="product-title">{{product.title}}</span>
           <span class="product-price"> {{product.price | currency}}</span>
           <button @click="addProductToCart(product)" class="add-to-cart-btn">Add to cart</button>
@@ -37,11 +37,23 @@ export default {
     //   products: state => state.products
     // }),
     products() {
-      return this.$store.state.products.filter(el =>
+      let saleProducts = this.$store.state.products.filter(el =>
         this.$store.state.sale
           ? el.price < this.$store.state.highprice && el.sale
           : el.price < this.$store.state.highprice
       )
+
+      let stackProducts = this.$store.state.products.filter(el => {
+         return this.$store.state.stack ? el.price < this.$store.state.highprice && (el.inventory > 0) : el.price < this.$store.state.highprice
+      })
+
+      let subCategoryProducts = this.$store.state.products.filter(el => {
+        return this.$store.state.subcategory.length > 0 ? el.price < this.$store.state.highprice && this.$store.state.subcategory.includes(el.subcategory) : el.price < this.$store.state.highprice
+      })
+
+      console.log('subcategory', subCategoryProducts)
+
+      return saleProducts.filter(s => stackProducts.includes(s) && subCategoryProducts.includes(s)).sort((a,b) => a.title.toUpperCase() < b.title.toUpperCase() ? -1 : 1 )
     },
     ...mapGetters({
       productInStock: 'productInStock'
@@ -63,8 +75,10 @@ export default {
     // });
     this.loading = true
     // this.$store.dispatch('fetchProducts')
+    this.$store.commit('resetFilterInfo')
     this.fetchProducts()
       .then(() => this.loading = false)
+
   },
   methods : {
     ...mapActions({
@@ -72,6 +86,9 @@ export default {
       addProductToCart: 'addProductToCart'
 
     }),
+    showProduction: function (product) {
+      this.$router.push({name: 'production', query: {pid: product.id}})
+    }
 
     // addProductToCart(product) {
     //   this.$store.dispatch('addProductToCart',product)
@@ -111,6 +128,10 @@ export default {
    .add-to-cart-btn {
      opacity: 1;
    }
+ }
+
+ .product-img {
+  cursor: pointer;
  }
 
  .product-card:hover, .product-card:focus  {

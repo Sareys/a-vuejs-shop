@@ -2,7 +2,7 @@
   <transition name="fade" tag="div">
     <div class="product-page">
       <div class="sidebar-wrap">
-        <Sidebar/>
+        <Sidebar category="supplements"/>
       </div>
       <div class="product-list-wrap">
         <h1>Accessories</h1>

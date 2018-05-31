@@ -148,7 +148,7 @@ const _products = [
     sale: false,
     img: 'wicker.jpg',
     inventory: 20,
-    description: 'sdfdsfsfsfsfsfsdfs fsfsfsdfsdfsdfsf sdfsfsdfsdfsdfsdfsdf'
+    description: 'sdfdsfsfsfsfsfsdfs fsfsfsdfsdfsdfsf sdfsfsdfsdfsdfsdfsdfdafdasfaaaaaaaaaaaaaaaflljdslfjiodsjaoifjsdojfodjsoifjweojfoijseofijweojfiowejfoijweoifjwoijfoiwejfoijweoifjweoifjoiwejfoijweiofjweoijfoiewjoifejofjowejfoqjewofi'
   },
   {
     id: 14,
