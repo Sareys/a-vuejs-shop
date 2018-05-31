@@ -133,7 +133,7 @@ h1 {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  padding-right: 40px;
+  padding-right: 30px;
   border-right: 1px solid #eee;
 }
 .product-list-wrap {
