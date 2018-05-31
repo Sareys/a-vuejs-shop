@@ -105,7 +105,7 @@ export default {
       )
 
       let stackProducts = this.$store.state.products.filter(el => {
-         return this.$store.state.stack ? el.price < this.$store.state.highprice && (el.inventory === 0) : el.price < this.$store.state.highprice
+         return this.$store.state.stack ? el.price < this.$store.state.highprice && (el.inventory > 0) : el.price < this.$store.state.highprice
       })
 
       let categoryProducts = this.$store.state.products.filter(el => {
