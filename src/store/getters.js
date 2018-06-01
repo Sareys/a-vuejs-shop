@@ -35,5 +35,10 @@ export default { // = computed properties
 
   getProductById: (state) => (id) => {
     return state.products.find(product => product.id === id)
+  },
+
+  getApparelSizeOptions: (state) => (subcategory) =>{
+    console.log('subcategory', state.sizeOptions[subcategory])
+    return state.sizeOptions[subcategory]
   }
 }

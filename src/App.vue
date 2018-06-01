@@ -1,6 +1,9 @@
 <template>
   <div id="app">
     <TopNavigation/>
+    <div class="banner">
+      <img src="../static/images/basket-table.jpg">
+    </div>
     <div class="content-wrapper">
       <router-view/>
     </div>
