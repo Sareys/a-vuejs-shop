@@ -1,7 +1,7 @@
 <template>
 	<div class="choose">
 		<div class="box">
-			<li v-for="c in categories" :key="c" @click="getCategory">
+			<li v-for="c in categories" :key="c" @click="getCategory(c)">
 				<div>{{c}}</div>
 			</li>
 		</div>
@@ -16,8 +16,8 @@ export default {
 		}
 	},
 	methods: {
-		getCategory: function (node) {
-			this.$emit('getCategory', node.target.innerText)
+		getCategory: function (c) {
+			this.$emit('getCategory', c)
 		}
 	}
 }

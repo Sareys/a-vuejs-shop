@@ -21,7 +21,8 @@
 					<div class="form-item">
 						<span>Subcategory</span>
 						<select class="form-right" name="" v-model="product.subcategory">
-							<option v-for="sub in subCategory[category]" :value="sub">{{sub}}</option>
+							<option disabled value="">Choose One</option>
+							<option v-for="sub in getSubCategoryTypes(category)" :value="sub">{{sub}}</option>
 						</select>
 					</div>
 					<div class="form-item">
@@ -41,9 +42,9 @@
 					</div>
 					<div class="form-item">
 						<span>Img</span>
-						<input class="form-right file-input" type="file" name="">
+						<input class="form-right file-input" type="file" name="" >
 					</div>
-					<div>
+				<div>
 						<button type="button" @click="addProduct">Add</button>
 						<button type="button" @click="closeDialog">Cancel</button>
 					</div>
@@ -57,20 +58,14 @@
 
 <script>
 import ChooseCategory from '@/sections/ChooseCategory'
-import {mapActions} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
 
 
 export default {
 	data () {
 		return {
 			hasCategory: false,
-			category: '',
-			subCategory: {
-				menApparel: ['shoes', 'upper', 'lower'],
-				womenApparel: ['shoes', 'upper', 'lower'],
-				supplements: ['whey', 'protein bar'],
-				equirement: []
-			},
+			category: 'menApparel',
 			product: {
 				title: 'something',
 		    price: 0,
@@ -88,25 +83,24 @@ export default {
 			this.$emit('close')
 			this.hasCategory = false
 		},
-		getCategory: function (c) {
-			this.category = c
-			this.product.category = c
+		getCategory: function (category) {
 			this.hasCategory = true
+			this.category = category
+			this.product.category = category
 		},
 		addProduct: function (el) {
 			el.target.disabled = true
 			this.$store.commit('addProductToState', this.product)
 			this.$emit('showTipInfo', 'Added')
 			this.closeDialog()
-		},
-		...mapActions({
-			addProductToState: 'addProductToState'
+		}
+	},
+	computed: {
+		...mapGetters({
+			getSubCategoryTypes: 'getSubCategoryTypes'
 		})
 	},
 	created () {
-
-	},
-	mounted () {
 	},
 	components: {
 		chooseCategory: ChooseCategory

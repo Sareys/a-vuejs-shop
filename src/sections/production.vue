@@ -13,6 +13,13 @@
 				<p class="prod--right_pre">Description</p>
 				<p class="description prod--right_info ">{{product.description}}</p>
 			</div>
+			<div class="prod--right_size" v-if="showSize">
+				<p class="prod--right_pre">Size</p>
+				<select v-model="product.size">
+					<option disabled value="null">choose one</option>
+					<option class="size_option" v-for="size in getApparelSizeOptions()(product.subcategory)" :value="size">{{size}} </option>
+				</select>
+			</div>
 			<p class="prod--right_num">
 				<span class="prod--right_pre">Number</span>
 				<span class="prod--right_num__input">
@@ -35,6 +42,7 @@ export default {
 	data () {
 		return {
 			product: {},
+			showSize: false, // show size input for men or women apparel
 			prodNum: 1  // the number to by, defalut 1 
 		}
 	},
@@ -49,7 +57,12 @@ export default {
 			} else {
 				this.product = JSON.parse(window.localStorage.getItem('product'))
 			}
+			if (this.product.category === 'menApparel' || this.product.category === 'womenApparel') {
+				this.product.size = null
+				this.showSize = true
+			} 
 		})
+
   },
 	methods: {
 		decNum: function () {
@@ -79,7 +92,8 @@ export default {
       addProductToCart: 'addProductToCart'
     }),
     ...mapGetters({
-    	getProductById: 'getProductById'
+    	getProductById: 'getProductById',
+    	getApparelSizeOptions: 'getApparelSizeOptions'
     })
 	}
 }
@@ -140,6 +154,10 @@ export default {
 	max-width: 300px;
 	text-align: left;
   word-wrap: break-word;
+}
+
+.prod--right_size > .size_option {
+	width: 50px;
 }
 
 .prod--right_num {

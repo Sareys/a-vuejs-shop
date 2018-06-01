@@ -51,8 +51,6 @@ export default {
         return this.$store.state.subcategory.length > 0 ? el.price < this.$store.state.highprice && this.$store.state.subcategory.includes(el.subcategory) : el.price < this.$store.state.highprice
       })
 
-      console.log('subcategory', subCategoryProducts)
-
       return saleProducts.filter(s => stackProducts.includes(s) && subCategoryProducts.includes(s)).sort((a,b) => a.title.toUpperCase() < b.title.toUpperCase() ? -1 : 1 )
     },
     ...mapGetters({
