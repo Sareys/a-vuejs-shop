@@ -14,7 +14,7 @@
 			<div class="products">
 				<transition-group name="card" tag="ul">
 	        <li v-for="product in products" :key="product.id" :data-key="product.id" class="product-card"  tabindex="0">
-	          <img class="product-img" :src="`./static/images/${product.img}`" :alt="`image of ${product.title}`">
+	          <img class="product-img" :src="product.img" :alt="`image of ${product.title}`">
 	          <span class="product-title">{{product.title}}</span>
 	          <span class="product-price"> {{product.price | currency}}</span>
 						<div class="button-master">
@@ -29,7 +29,7 @@
 		<ModifyProduct :modifyPid="modifyPid" v-if="showModifyProduct" @close="closModifyDialog" @showTipInfo="showTipInfo"></ModifyProduct>
 		<TipInformation v-if="showTip" :info="tipInfo"></TipInformation>
 	</div>
-	
+
 </template>
 
 <script>
@@ -131,7 +131,7 @@ export default {
 		TipInformation
 	}
 }
-	
+
 </script>
 
 <style lang="scss" scoped>
@@ -158,7 +158,7 @@ export default {
 			}
 
 			.search {
-				margin: 0; 
+				margin: 0;
 				border-radius: 0;
 				border-left: 0;
 				border-width: 2px;
@@ -168,7 +168,7 @@ export default {
 			}
 
 			.search:hover {
-				
+
 			}
 		}
 

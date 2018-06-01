@@ -10,7 +10,7 @@
 					<span>Operate</span>
 				</li>
 				<li class="cart-item" v-for="item in products" :date-key="item.id">
-					<img :src="`./static/images/${item.img}`" alt="img of product">
+					<img :src="item.img" alt="img of product">
 					<span>{{item.title}}</span>
 					<span>{{item.price | currency}}</span>
 					<span class="quantity">
@@ -39,7 +39,7 @@
 			</div>
 		</div>
 	</transition>
-	
+
 </template>
 
 <script>
@@ -76,7 +76,7 @@ export default {
 		})
 	}
 }
-	
+
 </script>
 
 <style lang="scss" scoped>

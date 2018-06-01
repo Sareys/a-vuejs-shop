@@ -1,7 +1,7 @@
 <template>
 	<div class="production">
 		<div class="prod--left">
-			<img :src="`./static/images/${product.img}`" :alt="`image of ${product.title}`">
+			<img :src="product.img" :alt="`image of ${product.title}`">
 		</div>
 		<div class="prod--right">
 			<p class="prod--right_title">{{product.title}}</p>
@@ -25,7 +25,7 @@
 			<button class="prod--right_cart" @click="addProductToCart(product)">Add to Cart</button>
 		</div>
 	</div>
-	
+
 </template>
 
 <script>
@@ -35,12 +35,12 @@ export default {
 	data () {
 		return {
 			product: {},
-			prodNum: 1  // the number to by, defalut 1 
+			prodNum: 1  // the number to by, defalut 1
 		}
 	},
 	created () {
 		this.fetchProducts().then(() => {
-			// this.$store.commit('resetFilterInfo')  
+			// this.$store.commit('resetFilterInfo')
 			const pid = this.$route.query.pid
 			const product = this.$store.getters.getProductById(pid)
 			if (product) {
@@ -126,7 +126,7 @@ export default {
 	display: inline-block;
 	color: #6c6c6c;
 	text-align: left;
-}	
+}
 
 .prod--right_info {
 	font-size: 18px;

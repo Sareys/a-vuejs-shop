@@ -9,7 +9,7 @@
     <div v-else class="shopping-cart-items">
       <ul>
         <li v-for="product in products" class="cart-product-card">
-          <img :src="`./static/images/${product.img}`" :alt="`Image of ${product.title}`">
+          <img :src="product.img" :alt="`Image of ${product.title}`">
           <span class="product-title">{{product.title}}</span>
           <span class="product-price"> {{product.price | currency}}</span>
           <span class="product-cart-quantity">Quantity: {{product.quantity}}</span>

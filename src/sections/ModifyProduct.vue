@@ -4,7 +4,7 @@
 			<form class="add-form">
 					<div class="form-item">
 						<span>Img</span>
-						<img :src="`./static/images/${product.img}`" style="width: 30px;">
+						<img :src="product.img" style="width: 30px;">
 					</div>
 					<div class="form-item">
 						<span>Title</span>
@@ -95,7 +95,7 @@ export default {
 	components: {
 	}
 }
-	
+
 </script>
 
 <style lang="scss" scoped>
@@ -181,5 +181,5 @@ export default {
 		z-index: 1000;
 	}
 }
-	
+
 </style>
