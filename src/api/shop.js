@@ -6,6 +6,8 @@
 //   {"id": 2, "title": "H&M T-Shirt White", "price": 10.99, "inventory": 10},
 //   {"id": 3, "title": "Charli XCX - Sucker CD", "price": 19.99, "inventory": 5}
 // ]
+import axios from 'axios'
+
 const _products = [
   {
     id: 1,
@@ -363,7 +365,11 @@ const _products = [
 
 export default {
   getProducts (cb) {
-    setTimeout(() => cb(_products), 100)
+    axios.get('http://xxxxx' + '/getProducts').then(response => {
+        cb(response.body._products)
+    }).catch(e => {
+        setTimeout(() => cb(_products), 100)
+    })
   },
 
   buyProducts (products, cb, errorCb) {
@@ -373,5 +379,5 @@ export default {
         ? cb()
         : errorCb()
     }, 100)
-  }
+  },
 }
