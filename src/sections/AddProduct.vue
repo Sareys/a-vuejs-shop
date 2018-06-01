@@ -1,7 +1,7 @@
 <template>
 	<div class="wrap">
-		<chooseCategory v-if="!hasCategory" @getCategory="getCategory"></chooseCategory>
-		<div class="dialog" v-else>
+		<chooseCategory v-show="!hasCategory" @getCategory="getCategory"></chooseCategory>
+		<div class="dialog" v-show="hasCategory">
 			<div class="add-product">
 				<h1>Add {{category}}</h1>
 				<form class="add-form">
