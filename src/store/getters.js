@@ -38,7 +38,10 @@ export default { // = computed properties
   },
 
   getApparelSizeOptions: (state) => (subcategory) =>{
-    console.log('subcategory', state.sizeOptions[subcategory])
     return state.sizeOptions[subcategory]
+  },
+
+  getSubCategoryTypes: (state) => (category) => {
+    return state.subCategoryTypes[category]
   }
 }
