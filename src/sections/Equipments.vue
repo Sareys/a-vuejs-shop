@@ -13,16 +13,20 @@
 </template>
 
 <script>
-  import ProductList from '@/components/ProductList'
-  import Sidebar from '@/components/Sidebar'
+import ProductList from '@/components/ProductList'
+import Sidebar from '@/components/Sidebar'
 
-  export default {
-    name: 'index',
-    components: {
-      ProductList,
-      Sidebar
-    }
+export default {
+  name: 'index',
+  bannerLink: '../static/images/equipmentBanner.jpg',
+  components: {
+    ProductList,
+    Sidebar
+  },
+  created () {
+    this.$store.commit('setBannerLink', this.$options.bannerLink)
   }
+}
 </script>
 
 <style lang="css">

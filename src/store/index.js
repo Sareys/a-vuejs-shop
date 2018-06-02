@@ -72,7 +72,8 @@ export default new Vuex.Store({
       'womenApparel': ['shoes', 'upper', 'lower'],
       'supplements': ['whey', 'protein bar', 'creatine'],
       'equipment': []
-    }
+    },
+    bannerLink: ''
   },
   getters,
   actions,

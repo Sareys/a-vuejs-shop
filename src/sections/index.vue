@@ -19,9 +19,13 @@ import Sidebar from '@/components/Sidebar'
 
 export default {
   name: 'index',
+  bannerLink: '../static/images/homeBanner.jpg',
   components: {
     ProductList,
     Sidebar
+  },
+  created () {
+    this.$store.commit('setBannerLink', this.$options.bannerLink)
   }
 }
 </script>

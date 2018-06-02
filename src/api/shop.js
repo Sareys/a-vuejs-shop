@@ -363,15 +363,95 @@ const _products = [
   }
 ]
 
+const IP = 'http://localhost:8081'
 export default {
+
+  /*
+    axios apis for
+     - signIn
+     - signUp 
+     - getUserInfo
+   */ 
+
+  signIn (data) {
+    return new Promise((resolve, reject) => {
+      axios.post(IP + '/signIn', data).then(response => {
+        resolve(response.body.data)
+      }).catch(e => {
+        reject(e)
+      })
+    })
+  },
+
+  signUp (data) {
+    return new Promise((resolve, reject) => {
+      axios.post(IP + '/signUp', data).then(response => {
+        resolve(response.body.data)
+      }).catch(e => {
+        reject(e)
+      })
+    })
+  },
+
+  getUserInfo (data) {
+    return new Promise((resolve, reject) => {
+      axios.post(IP + '/getUserInfo', data).then(response => {
+        resolve(response.body.data)
+      }).catch(e => {
+        reject(e)
+      })
+    })
+  },
+
   getProducts (cb) {
-    axios.get('http://xxxxx' + '/getProducts').then(response => {
+    axios.get(IP + '/getProducts').then(response => {
         cb(response.body._products)
     }).catch(e => {
         setTimeout(() => cb(_products), 100)
     })
   },
 
+  buyProducts (data) {
+    return new Promise((resolve, reject) => {
+      axios.post(IP + '/buyProducts', data).then(response => {
+        resolve(response)
+      }).catch(e => {
+        reject(e)
+      })
+    })
+  },
+
+  addProduct (product) {
+    return new Promise((resolve, reject) => {
+      axios.post(IP + '/addProduct', {product}).then(response => {
+        resolve(response.body.data)
+      }).catch(e => {
+        reject(e)
+      })
+    })
+  },
+
+  modifyProduct (product) {
+    return new Promise((resolve, reject) => {
+      axios.post(IP + '/modifyProduct', {product}).then(response => {
+        resolve(response.body.data)
+      }).catch(e => {
+        reject(e)
+      })
+    })
+  },
+
+  deleteProduct (id) {
+    return new Promise((resolve, reject) => {
+      axios.post(IP + '/removeProduct', {id}).then(response => {
+        resolve(response)
+      }).catch(e => {
+        reject(e)
+      })
+    })
+  }
+
+  /*
   buyProducts (products, cb, errorCb) {
     setTimeout(() => {
       // simulate random checkout failure.
@@ -379,5 +459,6 @@ export default {
         ? cb()
         : errorCb()
     }, 100)
-  },
+  }
+  */
 }

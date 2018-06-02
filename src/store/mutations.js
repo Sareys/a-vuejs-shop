@@ -76,19 +76,37 @@ export default { // setting and updating the state
   },
 
   addProductToState(state, product) {
-    let newId = Date.now() + Math.round(Math.random(0, 1) * 1000)
-    product.id = product.id ? product.id : newId
-    state.products.push(product)
+    shop.addProduct(product).then(product => {
+      state.products.push(product)
+    }).catch(e => {
+      let newId = Date.now() + Math.round(Math.random(0, 1) * 1000)
+      product.id = product.id ? product.id : newId
+      state.products.push(product)
+      alert('add product fail')
+    })
   },
 
-  removeProductFromState(state, id) {
-    const index = state.products.findIndex(p => p.id === id)
-    state.products.splice(index, 1)
+  deleteProductFromState(state, id) {
+    shop.deleteProduct(id).then(response => {
+      const index = state.products.findIndex(p => p.id === id)
+      state.products.splice(index, 1)
+    }).catch(e => {
+      alert('delete product faile')
+    })
   },
 
   modifyProductInState(state, product) {
-    const index = state.products.findIndex(p => p.id === product.id)
-    state.products.splice(index, 1, product)
+    shop.modifyProduct(product).then(newProduct => {
+      const index = state.products.findIndex(p => p.id === product.id)
+      state.products.splice(index, 1, newProduct)
+    }).catch(e => {
+      const index = state.products.findIndex(p => p.id === product.id)
+      state.products.splice(index, 1, product)
+    })
+  },
+
+  setBannerLink (state, bannerLink) {
+    state.bannerLink = bannerLink
   },
   
   resetFilterInfo(state) {
