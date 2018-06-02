@@ -18,9 +18,16 @@ import Sidebar from '@/components/Sidebar'
 
 export default {
   name: 'index',
+  bannerLink: '../static/images/menApparelBanner.jpg',
   components: {
     ProductList,
     Sidebar
+  },
+  created () {
+   // this.$store.commit('resetFilterInfo')
+    this.$store.commit('setBannerLink', this.$options.bannerLink)
+  },
+  methods: {
   }
 }
 </script>

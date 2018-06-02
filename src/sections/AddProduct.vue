@@ -65,7 +65,7 @@ export default {
 	data () {
 		return {
 			hasCategory: false,
-			category: 'menApparel',
+			category: '',
 			product: {
 				title: 'something',
 		    price: 0,

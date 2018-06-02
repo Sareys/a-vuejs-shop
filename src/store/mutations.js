@@ -90,6 +90,10 @@ export default { // setting and updating the state
     const index = state.products.findIndex(p => p.id === product.id)
     state.products.splice(index, 1, product)
   },
+
+  setBannerLink (state, bannerLink) {
+    state.bannerLink = bannerLink
+  },
   
   resetFilterInfo(state) {
     state.sale = false

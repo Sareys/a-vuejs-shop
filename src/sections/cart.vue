@@ -12,8 +12,12 @@ import ShoppingCart from '@/components/ShoppingCart'
 
 export default {
   name: 'cart',
+  bannerLink: '',
   components: {
     ShoppingCart
+  },
+  created () {
+    this.$store.commit('setBannerLink', this.$options.bannerLink)
   }
 }
 </script>

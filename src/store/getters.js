@@ -43,5 +43,9 @@ export default { // = computed properties
 
   getSubCategoryTypes: (state) => (category) => {
     return state.subCategoryTypes[category]
+  },
+  
+  getBannerLink (state) {
+    return state.bannerLink
   }
 }

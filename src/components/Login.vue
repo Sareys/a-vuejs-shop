@@ -37,6 +37,7 @@ import env from '../../config/dev.env.js'
 const IP = env.SERVER_IP
 
 export default {
+  bannerLink: '',
   data () {
     return {
       hasAccount: true,
@@ -50,7 +51,7 @@ export default {
     }
   },
   created () {
-   
+    this.$store.commit('setBannerLink', this.$options.bannerLink)
   },
   methods: {
     showSignup: function () {

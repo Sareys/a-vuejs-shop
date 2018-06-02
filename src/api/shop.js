@@ -363,9 +363,11 @@ const _products = [
   }
 ]
 
+const IP = 'http://localhost:8081'
 export default {
+
   getProducts (cb) {
-    axios.get('http://xxxxx' + '/getProducts').then(response => {
+    axios.get(IP + '/getProducts').then(response => {
         cb(response.body._products)
     }).catch(e => {
         setTimeout(() => cb(_products), 100)

@@ -40,6 +40,8 @@ import TipInformation from '@/sections/TipInformation'
 import {mapState, mapGetters, mapActions} from 'vuex'
 
 export default {
+	name: 'admin',
+  bannerLink: '',
 	data () {
 		return {
 			showAddProduct: false,
@@ -91,6 +93,7 @@ export default {
     }),
 	},
 	created () {
+    this.$store.commit('setBannerLink', this.$options.bannerLink)
 		this.fetchProducts().then()
 	},
 	computed: {
