@@ -125,7 +125,7 @@ export default {
 
 				img {
 					height: 50px;
-					widht: 50px
+					width: 50px
 				}
 
 				span {
