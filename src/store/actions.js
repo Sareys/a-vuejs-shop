@@ -36,7 +36,7 @@ export default { // actions = mehtods
     }
   },
 
-  removeProduct(context, product) {
+  removeProductFromCart(context, product) {
     let cartItem = context.state.cart.find(item => item.id === product.id)
     if (cartItem) {
       context.commit('removeProductFromCart', {product: product, quantity: cartItem.quantity})
@@ -44,7 +44,16 @@ export default { // actions = mehtods
     }
   },
 
-  checkout(context) {
+  checkout(context, userInfo) {
+    shop.buyProducts({cart: context.state.cart, userInfo: userInfo}).then(response => {
+      context.commit('emptyCart')
+      context.commit('setCheckoutStatus', 'success')
+      alert('checkout success')
+    }).catch(e => {
+      context.commit('setCheckoutStatus', 'fail')
+      alert('checkout fail')
+    })
+    /*
     shop.buyProducts(
       context.state.cart,
       () => {
@@ -55,5 +64,6 @@ export default { // actions = mehtods
         context.commit('setCheckoutStatus','fail')
       }
     )
+    */
   }
 }

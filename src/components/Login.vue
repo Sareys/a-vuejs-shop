@@ -34,6 +34,7 @@
 
 <script>
 import env from '../../config/dev.env.js'
+import Shop from '../api/shop.js'
 const IP = env.SERVER_IP
 
 export default {
@@ -73,6 +74,13 @@ export default {
       let regex = /^^(?!_)(?!.*?_$)[a-zA-Z0-9_\u4e00-\u9fa5]{6,12}$/
       if (regex.test(nickName)) {
         this.nameIllegalInfo = ''
+
+        Shop.checkNameExisted({nickName}).then(response => {
+
+        }).catch(e => {
+          
+        })
+        /*
         this.$http.post(IP + '/api/checkNickNameExisted', {nickName}).then(response => {
           console.log(response)
           if (response.body.code !== 1) {
@@ -83,6 +91,7 @@ export default {
             this.nameIllegalInfo = ''
           }
         })
+        */
       } else if (nickName !== '') {
         this.nameIllegalInfo = "username's format is not correct, incluing illegal character."
         this.nameIllegal = true
@@ -96,6 +105,7 @@ export default {
       let regex = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
       if (regex.test(value)) {
         this.emailIllegalInfo = ''
+        /*
         this.$http.post(IP + '/api/checkEmailExisted', {email: value}).then(response => {
           console.log(response)
           if (response.body.code !== 1) {
@@ -103,6 +113,7 @@ export default {
           } else {
           }
         })
+        */
       } else if (value !== '') {
         this.emailIllegalInfo = 'illegal email format'
       } else {
@@ -135,6 +146,14 @@ export default {
       const pass = document.getElementById('signinPass').value
       const data = {email, pass}
 
+      Shop.signIn(data).then(response => {
+        alert('success, and do something you want')
+      }).catch(e => {
+        alert('fail')
+      })
+
+      /*
+
       this.$http.post(IP + '/api/signIn', data, {
         withCredentials: true
       }).then(response => {
@@ -144,8 +163,8 @@ export default {
         } else {
           this.$router.push({path: '/', params: {data: response.body.data, signIn: true}})
         }
-
       })
+      */
     },
     signUp: function () {
       const nickName = document.getElementById('signupName').value
@@ -154,6 +173,14 @@ export default {
       const data = {nickName, email, pass}
 
       if (!this.nameIllegal && !this.passIllegal && !this.passConsistIllegal && (nickName.length > 0 && email.length > 0 && pass.length > 0)) {
+
+        Shop.signUp(data).then(response => {
+          alert('signUp success')
+        }).catch(e => {
+          alert('signUp fail')
+        })
+
+        /*
         this.$http.post(IP + '/api/signUp', data, {
           withCredentials: true
         }).then(response => {
@@ -164,6 +191,7 @@ export default {
             this.$router.push({path: '/', params: {data: response.body.data, signIn: true}})
           }
         })
+        */
       } else {
         alert('SignUp Fail')
       }

@@ -75,7 +75,7 @@ export default {
 		},
 		modify: function () {
 			console.log(this.product)
-			//this.$store.commit('modifyProductInState', this.product)
+			this.$store.commit('modifyProductInState', this.product)
 			this.$emit('showTipInfo', 'success')
 			this.closeDialog()
 
@@ -88,7 +88,8 @@ export default {
 		modifyPid: Number
 	},
 	created () {
-		this.product = this.getProductById()(this.modifyPid)
+		// deep clone 
+		this.product = JSON.parse(JSON.stringify(this.getProductById()(this.modifyPid)))
 	},
 	watch: {
 	},

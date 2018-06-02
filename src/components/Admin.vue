@@ -75,7 +75,7 @@ export default {
 		deleteProduct: function (el) {
 			if (window.confirm('are you sure to delete the product?')){
 				const deletePid = +(el.target.parentElement.parentElement.dataset.key)
-				this.$store.commit('removeProductFromState', deletePid)
+				this.$store.commit('deleteProductFromState', deletePid)
 			}
 		},
 		showTipInfo: function (tipInfo) {
@@ -121,7 +121,7 @@ export default {
       	return reg.test(el.title)
       })
 
-      return saleProducts.filter(s => stackProducts.includes(s) && categoryProducts.includes(s) && searchProducts.includes(s)).sort((a,b) => a.title[0].toUpperCase() < b.title[0].toUpperCase() ? -1 : 1 )
+      return saleProducts.filter(s => stackProducts.includes(s) && categoryProducts.includes(s) && searchProducts.includes(s)).sort((a,b) => a.title.toUpperCase() < b.title.toUpperCase() ? -1 : 1 )
     },
     ...mapGetters({
       productInStock: 'productInStock',

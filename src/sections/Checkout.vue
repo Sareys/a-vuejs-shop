@@ -29,15 +29,15 @@
 			</div>
 			<div class="right-part">
 				<div class="buyer-info">
-						<input class="buyer-input" type="text" placeholder="first name">
-						<input class="buyer-input" type="text" placeholder="last name">
-						<input class="buyer-input" type="text" placeholder="street name">
-						<input class="buyer-input" type="number" placeholder="number">
-						<input class="buyer-input" type="text" placeholder="zip code">
-						<input class="buyer-input" type="text" placeholder="city">
+						<input class="buyer-input" type="text" placeholder="first name" v-model="userInfo.firstName">
+						<input class="buyer-input" type="text" placeholder="last name" v-model="userInfo.lastName">
+						<input class="buyer-input" type="text" placeholder="street name" v-model="userInfo.streetName">
+						<input class="buyer-input" type="number" placeholder="number" v-model="userInfo.number">
+						<input class="buyer-input" type="text" placeholder="zip code" v-model="userInfo.zipCode">
+						<input class="buyer-input" type="text" placeholder="city" v-model="userInfo.city">
 				</div>
 				<div class=button-wrap>
-					<button @click="checkout">Submit</button>
+					<button @click="checkout(userInfo)">Submit</button>
 					<button>Cancel</button>
 				</div>
 			</div>
@@ -48,9 +48,12 @@
 
 <script>
 import {mapGetters, mapActions} from 'vuex'
+import Shop from '../api/shop.js'
+
 export default {
 	data () {
 		return {
+			userInfo: {}
 		}
 	},
 	computed: {
@@ -70,14 +73,24 @@ export default {
 		},
 		removeItem: function (cartPro) {
 			const product = this.$store.getters.getProductById(cartPro.id)
-			this.removeProduct(product)
+			this.removeProductFromCart(product)
+		},
+		getUserInfo: function () {
+			Shop.getUserInfo().then(response => {
+				this.userInfo = response.body.data.userInfo
+			}).catch(e => {
+				alert('getUserInfo fail')
+			})
 		},
 		...mapActions({
 			addProductNum: 'addProductToCart',
 			decProductFromCart: 'decProductFromCart',
-			removeProduct: 'removeProduct',
+			removeProductFromCart: 'removeProductFromCart',
 			checkout: 'checkout'
 		})
+	},
+	created () {
+		this.getUserInfo()
 	}
 }
 	
