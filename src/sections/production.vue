@@ -179,7 +179,6 @@ export default {
 }
 
 .prod--right_num__input > .input_pre {
-	flex: .2 0 0;
 	width: 26px;
 	height: 26px;
 	border: 1px solid #ccc;
@@ -187,7 +186,6 @@ export default {
 }
 
 .prod--right_num__input > input {
-	flex: .6 0 0;
 	width: 50px;
 	border: 1px solid #ccc;
 	text-align: center;
@@ -196,7 +194,6 @@ export default {
 }
 
 .prod--right_num__input > .input_after {
-	flex: .2 0 0;
 	width: 26px;
 	height: 26px;
 	border: 1px solid #ccc;
