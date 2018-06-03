@@ -77,7 +77,7 @@ export default {
 			Shop.getUserInfo().then(response => {
 				this.userInfo = response.body.data.userInfo
 			}).catch(e => {
-				alert('getUserInfo fail')
+				//alert('getUserInfo fail')
 			})
 		},
 		...mapActions({
@@ -159,20 +159,19 @@ export default {
 						font-size: 20px;
 						color: black;
 						background-color: #ededed;
-						flex: .2 0 0;
 						width: 26px;
 						height: 30px;
 						border: 1px solid #ccc;
 					}
 
 					input {
-						flex: .3 0 0;
 						width: 30px;
 						height: 30px;
 						border: 1px solid #ccc;
 						text-align: center;
 						cursor: text;
 						outline: none;
+						background-color: white;
 					}
 					.input_pre {
 						border-right: 0 !important;
